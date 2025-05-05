@@ -4,6 +4,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 function Register() {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState(''); // ✅ нове поле
   const [password, setPassword] = useState('');
   const [captchaToken, setCaptchaToken] = useState('');
 
@@ -16,10 +17,11 @@ function Register() {
     try {
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/register`, {
         username,
+        email, // ✅ додано
         password,
         token: captchaToken,
       });
-      alert('Registration successful!');
+      alert('Registration successful! Check your email.');
     } catch (err) {
       alert('Registration failed: ' + err.response?.data?.error);
     }
@@ -29,7 +31,6 @@ function Register() {
     <div style={styles.container}>
       <h2 style={styles.header}>Register</h2>
 
-      {/* CAPTCHA вгорі */}
       <div style={styles.captcha}>
         <ReCAPTCHA
           sitekey="6Lcs9S4rAAAAAKzHGzwB2QyHzHI46x24Z3VmR1L7"
@@ -42,6 +43,12 @@ function Register() {
         style={styles.input}
         placeholder="Username"
         onChange={(e) => setUsername(e.target.value)}
+      />
+      <input
+        type="email"
+        style={styles.input}
+        placeholder="Email"
+        onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="password"
