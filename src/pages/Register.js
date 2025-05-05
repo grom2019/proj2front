@@ -22,7 +22,7 @@ function Register() {
       <h2>Register</h2>
       <input placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
       <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={registerUser}>Register</button>
+      <button onClick={registerUser}>Registerr</button>
     </div>
   );
 }
