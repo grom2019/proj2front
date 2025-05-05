@@ -32,7 +32,7 @@ function Register() {
       {/* CAPTCHA вгорі */}
       <div style={styles.captcha}>
         <ReCAPTCHA
-          sitekey="6Letuy4rAAAAACG2uPnDTBh2u1ccGwzOSo9t4ueG"
+          sitekey="6Lcs9S4rAAAAAKzHGzwB2QyHzHI46x24Z3VmR1L7"
           size="normal"
           onChange={(token) => setCaptchaToken(token)}
         />
