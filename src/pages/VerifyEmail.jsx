@@ -20,7 +20,7 @@ function VerifyEmail() {
       .get(`${process.env.REACT_APP_BASE_URL}/api/auth/verify-email?token=${token}`)
       .then((res) => {
         console.log('Server response:', res); // Лог для відповіді від сервера
-        setMessage(res.data || 'Email підтверджено!');
+        setMessage(res.data.message || 'Email підтверджено!');
       })
       .catch((err) => {
         console.error('Error during verification:', err); // Лог для помилки
