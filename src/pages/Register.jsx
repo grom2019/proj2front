@@ -15,6 +15,7 @@ function Register() {
     }
 
     try {
+      // Перевірте правильність вашого базового URL
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/register`, {
         username,
         email, // ✅ додано
