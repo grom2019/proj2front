@@ -14,9 +14,9 @@ function VerifyEmail() {
     }
 
     axios
-      .get(`${process.env.REACT_APP_BASE_URL}/api/auth/verify?token=${token}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/api/auth/verify-email?token=${token}`)
       .then((res) => {
-        setMessage(res.data.message || 'Email підтверджено!');
+        setMessage(res.data || 'Email підтверджено!');
       })
       .catch((err) => {
         setMessage(err.response?.data?.error || 'Помилка під час підтвердження.');
