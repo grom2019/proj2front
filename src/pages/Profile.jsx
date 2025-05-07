@@ -79,16 +79,28 @@ function Profile() {
     }
   };
 
+  // Форматуємо дату народження у вигляді: "DD-MM-YYYY"
+  const formatBirthDate = (dateString) => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
   return (
     <div className="profile-container">
-      {userData.avatar_url && (
-        <div className="avatar-container">
-          <img src={userData.avatar_url} alt="Profile" className="avatar" />
-        </div>
-      )}
+      <div className="avatar-container">
+        <img
+          src={userData.avatar_url || 'https://litmir.club/data/Author/273000/273657/%D0%A4%D0%BE%D1%82%D0%BE_%D0%9B%D0%B0%D0%BA%D0%B8_%D0%90%D0%BD%D0%BE%D0%BD%D0%B8%D0%BC_08c2c.jpg'}
+          alt="Profile"
+          className="avatar"
+        />
+      </div>
       <h2>Профіль</h2>
       <button onClick={handleEditToggle}>
         {isEditing ? 'Скасувати редагування' : 'Редагувати профіль'}
@@ -149,7 +161,7 @@ function Profile() {
           <p><strong>Ім'я:</strong> {userData.first_name}</p>
           <p><strong>Прізвище:</strong> {userData.last_name}</p>
           <p><strong>По батькові:</strong> {userData.patronymic}</p>
-          <p><strong>Дата народження:</strong> {userData.birth_date}</p>
+          <p><strong>Дата народження:</strong> {formatBirthDate(userData.birth_date)}</p>
           <p><strong>Військова частина:</strong> {userData.military_unit}</p>
           <p><strong>Звання:</strong> {userData.rank}</p>
           <p><strong>Посада:</strong> {userData.position}</p>
