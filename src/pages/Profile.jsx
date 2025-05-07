@@ -67,7 +67,7 @@ function Profile() {
     e.preventDefault();
 
     // Перевірка, чи поля "Ім'я" та "Прізвище" не порожні
-    if (!formData.first_name || !formData.last_name) {
+    if (!formData.first_name || !formData.last_name || !formData.patronymic) {
       alert('Ім\'я та Прізвище повинні бути заповнені!');
       return;
     }
