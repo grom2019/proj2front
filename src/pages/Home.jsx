@@ -1,14 +1,9 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import LogoutButton from '../components/LogoutButton';
 
 function Home() {
-  const navigate = useNavigate();
-
-  
-
   return (
-    <div>
+    <div className="home-container">
       <h2>Welcome to the Home Page</h2>
       <p>You are logged in!</p>
       <LogoutButton />

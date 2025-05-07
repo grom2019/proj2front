@@ -4,21 +4,17 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 function Register() {
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState(''); // ✅ нове поле
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [captchaToken, setCaptchaToken] = useState('');
 
   const registerUser = async () => {
-    if (!captchaToken) {
-      alert('Please complete the CAPTCHA');
-      return;
-    }
-//
+    if (!captchaToken) return alert('Please complete the CAPTCHA');
+
     try {
-      // Перевірте правильність вашого базового URL
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/register`, {
         username,
-        email, // ✅ додано
+        email,
         password,
         token: captchaToken,
       });
@@ -29,75 +25,15 @@ function Register() {
   };
 
   return (
-    <div style={styles.container}>
-      <h2 style={styles.header}>Register</h2>
-
-      <div style={styles.captcha}>
-        <ReCAPTCHA
-          sitekey="6Lcs9S4rAAAAAKzHGzwB2QyHzHI46x24Z3VmR1L7"
-          size="normal"
-          onChange={(token) => setCaptchaToken(token)}
-        />
-      </div>
-
-      <input
-        style={styles.input}
-        placeholder="Username"
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="email"
-        style={styles.input}
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        style={styles.input}
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button style={styles.button} onClick={registerUser}>
-        Register
-      </button>
+    <div className="container">
+      <h2 className="header">Register</h2>
+      <ReCAPTCHA sitekey="6Lcs9S4rAAAAAKzHGzwB2QyHzHI46x24Z3VmR1L7" onChange={setCaptchaToken} />
+      <input className="input" placeholder="Username" onChange={e => setUsername(e.target.value)} />
+      <input type="email" className="input" placeholder="Email" onChange={e => setEmail(e.target.value)} />
+      <input type="password" className="input" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+      <button className="button" onClick={registerUser}>Register</button>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    maxWidth: '400px',
-    margin: '50px auto',
-    padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '10px',
-    backgroundColor: '#f9f9f9',
-    textAlign: 'center',
-  },
-  header: {
-    marginBottom: '20px',
-  },
-  input: {
-    display: 'block',
-    width: '90%',
-    margin: '10px auto',
-    padding: '10px',
-    fontSize: '16px',
-  },
-  captcha: {
-    marginBottom: '20px',
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  button: {
-    padding: '10px 20px',
-    fontSize: '16px',
-    cursor: 'pointer',
-    backgroundColor: '#4CAF50',
-    color: 'white',
-    border: 'none',
-    borderRadius: '5px',
-  },
-};
 
 export default Register;

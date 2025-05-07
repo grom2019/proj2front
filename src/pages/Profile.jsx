@@ -8,23 +8,17 @@ function Profile() {
 
   const token = localStorage.getItem('token');
 
-  // Якщо токен відсутній, перенаправляємо на сторінку входу
   useEffect(() => {
-    if (!token) {
-      window.location.href = '/login';
-      return;
-    }
+    if (!token) window.location.href = '/login';
 
     const fetchUserData = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/auth/profile`, {
-          headers: {
-            Authorization: `Bearer ${token}`, // ✅ додано 'Bearer'
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
         setUserData(response.data);
         setLoading(false);
-      } catch (err) {
+      } catch {
         setError('Error fetching profile data');
         setLoading(false);
       }
@@ -33,20 +27,15 @@ function Profile() {
     fetchUserData();
   }, [token]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="profile-container">
       <h2>Profile</h2>
       <p><strong>Username:</strong> {userData.username}</p>
       <p><strong>Email:</strong> {userData.email}</p>
-      <p><strong>Password:</strong> ***** (for security reasons, you should not show the password)</p>
+      <p><strong>Password:</strong> *****</p>
     </div>
   );
 }

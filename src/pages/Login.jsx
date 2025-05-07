@@ -9,10 +9,7 @@ function Login() {
 
   const loginUser = async () => {
     try {
-      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/login`, {
-        username,
-        password
-      });
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/login`, { username, password });
       localStorage.setItem('token', res.data.token);
       navigate('/home');
     } catch (err) {
@@ -21,11 +18,11 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
-      <input placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
-      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={loginUser}>Login</button>
+      <input className="input" placeholder="Username" onChange={e => setUsername(e.target.value)} />
+      <input type="password" className="input" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+      <button className="button" onClick={loginUser}>Login</button>
     </div>
   );
 }
