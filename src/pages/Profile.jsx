@@ -9,7 +9,10 @@ function Profile() {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    if (!token) return window.location.href = '/login';
+    if (!token) {
+      setError('Token not found. Please log in.');
+      return window.location.href = '/login';
+    }
 
     const fetchUserData = async () => {
       try {
@@ -17,9 +20,11 @@ function Profile() {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUserData(res.data);
-        setLoading(false);
-      } catch {
-        setError('Error fetching profile data');
+      } catch (err) {
+        const msg = err.response?.data?.error || 'Unknown error';
+        console.error('❌ Fetch error:', msg);
+        setError(`Error fetching profile: ${msg}`);
+      } finally {
         setLoading(false);
       }
     };
@@ -28,18 +33,18 @@ function Profile() {
   }, [token]);
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (error) return <div style={{ color: 'red' }}>{error}</div>;
 
   const {
-    username, email, first_name, last_name, middle_name,
-    birth_date, military_unit, rank, position, vos, profile_image
+    username, email, first_name, last_name, patronymic,
+    birth_date, military_unit, rank, position, mos, avatar_url
   } = userData;
 
   return (
     <div className="profile-container">
-      {profile_image && (
+      {avatar_url && (
         <div className="avatar-container">
-          <img src={profile_image} alt="Profile" className="avatar" />
+          <img src={avatar_url} alt="Profile" className="avatar" />
         </div>
       )}
       <h2>Профіль</h2>
@@ -47,14 +52,14 @@ function Profile() {
       <p><strong>Email:</strong> {email}</p>
       <p><strong>Ім'я:</strong> {first_name}</p>
       <p><strong>Прізвище:</strong> {last_name}</p>
-      <p><strong>По батькові:</strong> {middle_name}</p>
+      <p><strong>По батькові:</strong> {patronymic}</p>
       <p><strong>Дата народження:</strong> {birth_date}</p>
       <p><strong>Військова частина:</strong> {military_unit}</p>
       {military_unit && (
         <>
           <p><strong>Звання:</strong> {rank}</p>
           <p><strong>Посада:</strong> {position}</p>
-          <p><strong>ВОС:</strong> {vos}</p>
+          <p><strong>ВОС:</strong> {mos}</p>
         </>
       )}
     </div>
