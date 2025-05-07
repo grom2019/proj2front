@@ -19,7 +19,7 @@ function Profile() {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/auth/profile`, {
           headers: {
-            Authorization: token, // передаємо токен для перевірки
+            Authorization: `Bearer ${token}`, // ✅ додано 'Bearer'
           },
         });
         setUserData(response.data);
