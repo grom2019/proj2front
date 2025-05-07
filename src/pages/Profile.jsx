@@ -30,15 +30,15 @@ function Profile() {
         });
         setUserData(res.data);
         setFormData({
-          first_name: res.data.first_name,
-          last_name: res.data.last_name,
-          patronymic: res.data.patronymic,
-          birth_date: res.data.birth_date,
-          military_unit: res.data.military_unit,
-          rank: res.data.rank,
-          position: res.data.position,
-          mos: res.data.mos,
-          avatar_url: res.data.avatar_url
+          first_name: res.data.first_name || '',
+          last_name: res.data.last_name || '',
+          patronymic: res.data.patronymic || '',
+          birth_date: res.data.birth_date || '',
+          military_unit: res.data.military_unit || '',
+          rank: res.data.rank || '',
+          position: res.data.position || '',
+          mos: res.data.mos || '',
+          avatar_url: res.data.avatar_url || '' // Заповнюємо порожнім рядком, якщо аватар не задано
         });
         setLoading(false);
       } catch (err) {
@@ -66,8 +66,14 @@ function Profile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Якщо поле аватар порожнє, ставимо дефолтне значення
+    const updatedFormData = { ...formData };
+    if (!updatedFormData.avatar_url) {
+      updatedFormData.avatar_url = 'https://litmir.club/data/Author/273000/273657/%D0%A4%D0%BE%D1%82%D0%BE_%D0%9B%D0%B0%D0%BA%D0%B8_%D0%90%D0%BD%D0%BE%D0%BD%D0%B8%D0%BC_08c2c.jpg'; // Дефолтне фото
+    }
+
     try {
-      const res = await axios.put(`${process.env.REACT_APP_BASE_URL}/api/auth/profile`, formData, {
+      const res = await axios.put(`${process.env.REACT_APP_BASE_URL}/api/auth/profile`, updatedFormData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUserData(res.data.user);
