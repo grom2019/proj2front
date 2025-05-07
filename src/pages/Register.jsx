@@ -13,7 +13,7 @@ function Register() {
       alert('Please complete the CAPTCHA');
       return;
     }
-
+//
     try {
       // Перевірте правильність вашого базового URL
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/register`, {
