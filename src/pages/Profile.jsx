@@ -66,6 +66,12 @@ function Profile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Перевірка, чи поля "Ім'я" та "Прізвище" не порожні
+    if (!formData.first_name || !formData.last_name) {
+      alert('Ім\'я та Прізвище повинні бути заповнені!');
+      return;
+    }
+
     // Якщо поле аватар порожнє, ставимо дефолтне значення
     const updatedFormData = { ...formData };
     if (!updatedFormData.avatar_url) {
