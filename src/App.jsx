@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -6,28 +6,11 @@ import Home from './pages/Home';
 import VerifyEmail from './pages/VerifyEmail';
 import Profile from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
+import LogoutButton from './components/LogoutButton';
+import { AuthContext } from './context/AuthContext';
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem('token'));
-
-  useEffect(() => {
-    const checkToken = () => {
-      const storedToken = localStorage.getItem('token');
-      if (storedToken !== token) {
-        setToken(storedToken);
-      }
-    };
-
-    // Слухач зміни токена при вході/виході
-    window.addEventListener('storage', checkToken);
-    // Перевірка при фокусі вікна
-    window.addEventListener('focus', checkToken);
-
-    return () => {
-      window.removeEventListener('storage', checkToken);
-      window.removeEventListener('focus', checkToken);
-    };
-  }, [token]);
+  const { token } = useContext(AuthContext);
 
   return (
     <Router>
@@ -36,6 +19,7 @@ function App() {
           <>
             <Link to="/home" className="nav-link">Home</Link>
             <Link to="/profile" className="nav-link">Profile</Link>
+            <LogoutButton />
           </>
         ) : (
           <>
