@@ -9,10 +9,7 @@ function Profile() {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    if (!token) {
-      setError('Token not found. Please log in.');
-      return window.location.href = '/login';
-    }
+    if (!token) return window.location.href = '/login';
 
     const fetchUserData = async () => {
       try {
@@ -20,11 +17,10 @@ function Profile() {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUserData(res.data);
+        setLoading(false);
       } catch (err) {
-        const msg = err.response?.data?.error || 'Unknown error';
-        console.error('❌ Fetch error:', msg);
-        setError(`Error fetching profile: ${msg}`);
-      } finally {
+        console.error('Fetch error:', err);
+        setError('Error fetching profile data');
         setLoading(false);
       }
     };
@@ -33,7 +29,7 @@ function Profile() {
   }, [token]);
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div style={{ color: 'red' }}>{error}</div>;
+  if (error) return <div>{error}</div>;
 
   const {
     username, email, first_name, last_name, patronymic,
