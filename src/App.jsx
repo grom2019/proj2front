@@ -5,6 +5,7 @@ import Register from './pages/Register';
 import Home from './pages/Home';
 import VerifyEmail from './pages/VerifyEmail';
 import Profile from './pages/Profile';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const token = localStorage.getItem('token');
@@ -12,19 +13,46 @@ function App() {
   return (
     <Router>
       <nav style={{ padding: '10px', background: '#f0f0f0' }}>
-        <Link to="/" style={{ marginRight: '10px' }}>Home</Link>
-        <Link to="/login" style={{ marginRight: '10px' }}>Login</Link>
-        <Link to="/register" style={{ marginRight: '10px' }}>Register</Link>
-        {token && (
-          <Link to="/profile" style={{ marginLeft: '10px' }}>Profile</Link> // Кнопка профілю
+        {token ? (
+          <>
+            <Link to="/home" style={{ marginRight: '10px' }}>Home</Link>
+            <Link to="/profile" style={{ marginRight: '10px' }}>Profile</Link>
+          </>
+        ) : (
+          <>
+            <Link to="/login" style={{ marginRight: '10px' }}>Login</Link>
+            <Link to="/register" style={{ marginRight: '10px' }}>Register</Link>
+          </>
         )}
       </nav>
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
-        <Route path="/profile" element={<Profile />} /> {/* Новий маршрут для профілю */}
+
+        {/* Захищені сторінки */}
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* За замовчуванням — перекидаємо на Home або Login */}
+        <Route
+          path="/"
+          element={token ? <Home /> : <Login />}
+        />
       </Routes>
     </Router>
   );

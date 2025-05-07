@@ -5,12 +5,7 @@ import LogoutButton from '../components/LogoutButton';
 function Home() {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/login');
-    }
-  }, [navigate]);
+  
 
   return (
     <div>

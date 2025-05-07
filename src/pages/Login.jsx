@@ -14,7 +14,7 @@ function Login() {
         password
       });
       localStorage.setItem('token', res.data.token);
-      navigate('/');
+      navigate('/home');
     } catch (err) {
       alert("Login failed: " + err.response.data.error);
     }
