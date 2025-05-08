@@ -8,7 +8,9 @@ import Profile from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
 import LogoutButton from './components/LogoutButton';
 import { AuthContext } from './context/AuthContext';
-import StructureSelector from './components/StructureSelector';
+import StructureSelector from './components/StructureSelector'; // це вже працює
+
+
 import BrigadePage from './pages/BrigadePage'; // Імпортуємо новий компонент
 
 function App() {

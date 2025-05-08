@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './StructureSelector.css';
+import '../styles/StructureSelector.css';
 
 const structureData = {
   'Сухопутні війська України (СВУ)': {
