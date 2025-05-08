@@ -191,3 +191,11 @@ strong {
     padding: 15px;
   }
 }
+/* Рекомендовані доповнення до CSS */
+.nav-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 10px;
+}
