@@ -1,3 +1,4 @@
+// src/components/StructureSelector.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/StructureSelector.css';
@@ -43,7 +44,7 @@ const StructureSelector = () => {
 
   const handleChoose = () => {
     const selectedBrigade = structureData[selectedBranch][selectedCommand][selectedIndex];
-    navigate(`/brigades/${encodeURIComponent(selectedBrigade)}`);
+    navigate(`/brigade/${encodeURIComponent(selectedBrigade.toLowerCase().replace(/ /g, '-'))}`); // Формуємо URL для бригади
   };
 
   const brigades =

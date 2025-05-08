@@ -1,7 +1,8 @@
 // src/pages/BrigadePage.jsx
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Button } from './Button';
+
 
 const brigadeData = {
   '92-ombr': {
@@ -23,6 +24,7 @@ const brigadeData = {
 
 const BrigadePage = () => {
   const { brigadeId } = useParams();
+  const navigate = useNavigate();
   const brigade = brigadeData[brigadeId];
 
   if (!brigade) {
@@ -43,7 +45,7 @@ const BrigadePage = () => {
       />
       <p className="text-lg leading-7 text-gray-800 mb-6">{brigade.description}</p>
       <div className="text-center">
-        <Button onClick={() => window.history.back()} className="px-6 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-xl">
+        <Button onClick={() => navigate(-1)} className="px-6 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-xl">
           Назад
         </Button>
       </div>

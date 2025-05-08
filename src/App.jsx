@@ -1,3 +1,4 @@
+// src/App.jsx
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Login from './pages/Login';
@@ -9,8 +10,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 import LogoutButton from './components/LogoutButton';
 import { AuthContext } from './context/AuthContext';
 import StructureSelector from './components/StructureSelector'; // це вже працює
-
-
 import BrigadePage from './pages/BrigadePage'; // Імпортуємо новий компонент
 
 function App() {
