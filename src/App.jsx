@@ -8,6 +8,8 @@ import Profile from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
 import LogoutButton from './components/LogoutButton';
 import { AuthContext } from './context/AuthContext';
+import StructureSelector from './components/StructureSelector';
+import BrigadePage from './pages/BrigadePage'; // Імпортуємо новий компонент
 
 function App() {
   const { token } = useContext(AuthContext);
@@ -34,6 +36,7 @@ function App() {
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Route path="/brigade/:brigadeId" element={<BrigadePage />} /> {/* Маршрут для бригади */}
         <Route path="/" element={token ? <Home /> : <Login />} />
       </Routes>
     </Router>
