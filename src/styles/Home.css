@@ -72,5 +72,17 @@
   
   .close-btn {
     margin-top: 1.5rem;
-    background-color: white
+    background-color: white;
+    color: red;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .close-btn:hover {
+    background-color: #f3f4f6;
+  }
   
