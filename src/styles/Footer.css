@@ -2,10 +2,49 @@
 .footer {
     margin-top: auto;
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: #111; /* Тёмний фон */
     text-align: center;
     font-size: 0.95rem;
-    color: #555;
-    border-top: 1px solid #ddd;
+    color: #facc15; /* Жовтий текст для контрасту */
+    border-top: 4px solid #facc15; /* Жовта лінія вгорі */
+    transition: all 0.3s ease-in-out;
+   
+    box-shadow: 0 8px 16px rgba(250, 194, 21, 0.4); /* М'яка жовта тінь */
+  }
+  
+  /* Легке підняття футера при наведенні */
+  .footer:hover {
+    transform: translateY(4px); /* Легке підняття при наведенні */
+    box-shadow: 0 15px 30px rgba(250, 194, 21, 0.6); /* Сильна жовта тінь */
+    filter: brightness(1.1); /* Яскравіший ефект */
+  }
+  
+  /* Стиль для тексту футера */
+  .footer p {
+    font-size: 0.9rem;
+    color: #facc15; /* Жовтий текст */
+    transition: color 0.3s ease-in-out;
+    text-transform: uppercase; /* Перетворення тексту на великі літери */
+    letter-spacing: 1px; /* Легке збільшення відстані між літерами */
+  }
+  
+  /* Неоновий ефект при наведенні на текст футера */
+  .footer:hover p {
+    color: white;
+    text-shadow: 0 0 10px #facc15; /* Неоновий текст */
+    animation: pulseFooter 1s infinite; /* Пульсуючий ефект */
+  }
+  
+  /* Пульсуючий ефект для футера */
+  @keyframes pulseFooter {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05); /* Легке збільшення */
+    }
+    100% {
+      transform: scale(1);
+    }
   }
   

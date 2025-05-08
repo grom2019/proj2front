@@ -10,23 +10,27 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import BrigadePage from './pages/BrigadePage';
+import './styles/App.css';
+
 
 function App() {
   return (
     <Router>
-      <Navbar />
-      <main>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/verify-email" element={<VerifyEmail />} />
-          <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-          <Route path="/brigade/:brigadeId" element={<BrigadePage />} />
-          <Route path="/" element={<Login />} />
-        </Routes>
-      </main>
-      <Footer />
+      <div className="app-container">
+        <Navbar />
+        <main className="main-content">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/verify-email" element={<VerifyEmail />} />
+            <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            <Route path="/brigade/:brigadeId" element={<BrigadePage />} />
+            <Route path="/" element={<Login />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </Router>
   );
 }
