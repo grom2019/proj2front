@@ -25,7 +25,7 @@ const Home = () => {
       return (
         <div className="mt-6">
           <h2 className="text-2xl font-bold text-center mb-4">Оберіть Оперативне командування</h2>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {okOptions[selectedBranch].map((ok, index) => (
               <div key={index} className="text-center">
                 <div
@@ -49,27 +49,28 @@ const Home = () => {
       return (
         <div className="mt-6">
           <h2 className="text-2xl font-bold text-center mb-4">Оберіть бригаду</h2>
-          {/* Тут можна додати карусель або список бригад */}
-          <div className="text-center mb-6">
-            <Link to={`/brigade/92-ombr`}>
-              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                92 окрема механізована бригада
-              </button>
-            </Link>
-          </div>
-          <div className="text-center mb-6">
-            <Link to={`/brigade/93-ombr`}>
-              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                93 окрема механізована бригада
-              </button>
-            </Link>
-          </div>
-          <div className="text-center">
-            <Link to={`/brigade/36-mpbr`}>
-              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                36 окрема бригада морської піхоти
-              </button>
-            </Link>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="text-center mb-6">
+              <Link to={`/brigade/92-ombr`}>
+                <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                  92 окрема механізована бригада
+                </button>
+              </Link>
+            </div>
+            <div className="text-center mb-6">
+              <Link to={`/brigade/93-ombr`}>
+                <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                  93 окрема механізована бригада
+                </button>
+              </Link>
+            </div>
+            <div className="text-center">
+              <Link to={`/brigade/36-mpbr`}>
+                <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                  36 окрема бригада морської піхоти
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       );
@@ -82,7 +83,7 @@ const Home = () => {
       <h1 className="text-4xl font-bold text-center mb-6">Головна сторінка</h1>
       <p className="text-lg text-center mb-6">Оберіть вид ЗСУ:</p>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {["Сухопутні війська", "Повітряні сили", "Військово-морські сили"].map((branch, index) => (
           <div
             key={index}
