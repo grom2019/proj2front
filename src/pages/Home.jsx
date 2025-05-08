@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [selectedBranch, setSelectedBranch] = useState(null);
@@ -47,13 +46,17 @@ const Home = () => {
     if (selectedBranch) {
       const branch = branchOptions.find(b => b.name === selectedBranch);
       return (
-        <div className="mt-6">
-          <h2 className="text-2xl font-bold text-center mb-4">Оберіть Оперативне командування</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="mt-10">
+          <h2 className="text-2xl font-bold text-center text-gray-700 mb-6 animate-fade">Оберіть Оперативне командування</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {branch.oks.map((ok, index) => (
-              <div key={index} className="text-center cursor-pointer" onClick={() => handleOKSelect(ok.name)}>
-                <img src={ok.image} alt={ok.name} className="w-32 h-32 mx-auto rounded-full mb-4 object-cover" />
-                <p className="text-lg font-semibold">{ok.name}</p>
+              <div
+                key={index}
+                onClick={() => handleOKSelect(ok.name)}
+                className={`cursor-pointer transition duration-300 transform hover:scale-105 p-4 rounded-xl shadow-md bg-white border-2 ${selectedOK === ok.name ? 'border-blue-500' : 'border-transparent'}`}
+              >
+                <img src={ok.image} alt={ok.name} className="w-28 h-28 mx-auto rounded-full mb-4 object-cover" />
+                <p className="text-lg font-semibold text-gray-800">{ok.name}</p>
               </div>
             ))}
           </div>
@@ -63,60 +66,25 @@ const Home = () => {
     return null;
   };
 
-  const renderBrigadeSelection = () => {
-    if (selectedOK) {
-      return (
-        <div className="mt-6">
-          <h2 className="text-2xl font-bold text-center mb-4">Оберіть бригаду</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            <div className="text-center">
-              <Link to={`/brigade/92-ombr`}>
-                <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                  92 окрема механізована бригада
-                </button>
-              </Link>
-            </div>
-            <div className="text-center">
-              <Link to={`/brigade/93-ombr`}>
-                <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                  93 окрема механізована бригада
-                </button>
-              </Link>
-            </div>
-            <div className="text-center">
-              <Link to={`/brigade/36-mpbr`}>
-                <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                  36 окрема бригада морської піхоти
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      );
-    }
-    return null;
-  };
-
   return (
-    <div className="max-w-5xl mx-auto p-6">
-      <h1 className="text-4xl font-bold text-center mb-6">Головна сторінка</h1>
-      <p className="text-lg text-center mb-6">Оберіть вид ЗСУ:</p>
+    <div className="max-w-6xl mx-auto p-6 home-container">
+      <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">Головна сторінка</h1>
+      <p className="text-lg text-center mb-8 text-gray-600">Оберіть вид ЗСУ:</p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {branchOptions.map((branch, index) => (
           <div
             key={index}
             onClick={() => handleBranchSelect(branch.name)}
-            className="cursor-pointer text-center"
+            className={`cursor-pointer transition duration-300 transform hover:scale-105 p-4 rounded-xl shadow-md bg-white border-2 ${selectedBranch === branch.name ? 'border-green-500' : 'border-transparent'}`}
           >
-            <img src={branch.image} alt={branch.name} className="w-32 h-32 mx-auto rounded-full mb-4 object-cover" />
-            <p className="text-lg font-semibold">{branch.name}</p>
+            <img src={branch.image} alt={branch.name} className="w-28 h-28 mx-auto rounded-full mb-4 object-cover" />
+            <p className="text-lg font-semibold text-gray-800">{branch.name}</p>
           </div>
         ))}
       </div>
 
       {renderOKSelection()}
-      {renderBrigadeSelection()}
     </div>
   );
 };
