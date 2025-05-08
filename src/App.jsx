@@ -8,6 +8,7 @@ import VerifyEmail from './pages/VerifyEmail';
 import Profile from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import BrigadePage from './pages/BrigadePage';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<Login />} />
         </Routes>
       </main>
+      <Footer />
     </Router>
   );
 }
