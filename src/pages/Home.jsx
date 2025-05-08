@@ -1,6 +1,6 @@
 // src/pages/Home.jsx
 import React, { useState } from 'react';
-import '../../styles/Home.css';
+import '../styles/Home.css';
 
 const Home = () => {
   const [activeBranch, setActiveBranch] = useState(null);
