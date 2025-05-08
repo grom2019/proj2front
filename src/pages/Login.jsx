@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import '../styles/Login.css'; // Підключаємо CSS
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -11,7 +12,10 @@ function Login() {
 
   const loginUser = async () => {
     try {
-      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/login`, { username, password });
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/login`, {
+        username,
+        password,
+      });
       login(res.data.token);
       navigate('/home');
     } catch (err) {
@@ -20,11 +24,25 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      <input className="input" placeholder="Username" onChange={e => setUsername(e.target.value)} />
-      <input type="password" className="input" placeholder="Password" onChange={e => setPassword(e.target.value)} />
-      <button className="button" onClick={loginUser}>Login</button>
+    <div className="login-wrapper">
+      <div className="login-box">
+        <h2 className="login-title">Вхід</h2>
+        <input
+          type="text"
+          className="login-input"
+          placeholder="Ім’я користувача"
+          onChange={e => setUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          className="login-input"
+          placeholder="Пароль"
+          onChange={e => setPassword(e.target.value)}
+        />
+        <button className="login-button" onClick={loginUser}>
+          Увійти
+        </button>
+      </div>
     </div>
   );
 }

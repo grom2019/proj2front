@@ -18,7 +18,7 @@ function App() {
     <Router>
       <div className="app-container">
         <Navbar />
-        <main className="main-content">
+        <main >
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

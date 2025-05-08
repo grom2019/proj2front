@@ -1,0 +1,113 @@
+/* Стиль для основних елементів */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #111;
+  }
+  
+  .login-box {
+    background-color: #1a1a1a;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(250, 194, 21, 0.4);
+    border: 2px solid #facc15;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .login-title {
+    color: #facc15;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .login-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 10px;
+    border: 2px solid #facc15;
+    background-color: #000;
+    color: #facc15;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .login-input:focus {
+    box-shadow: 0 0 10px #facc15;
+  }
+  
+  .login-button {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    border: 2px solid #facc15;
+    border-radius: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 6px rgba(250, 194, 21, 0.7);
+  }
+  
+  .login-button:hover {
+    background-color: #facc15;
+    color: #000;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px 5px #facc15, 0 0 30px 5px rgba(250, 194, 21, 0.5);
+    animation: pulse 1s infinite;
+  }
+  
+  .login-button:active {
+    transform: scale(0.95);
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  /* Адаптивний дизайн для мобільних пристроїв */
+  @media (max-width: 768px) {
+    .login-box {
+      padding: 2rem; /* Зменшуємо padding для мобільних */
+      max-width: 90%; /* Збільшуємо ширину на мобільних */
+    }
+  
+    .login-title {
+      font-size: 1.2rem; /* Зменшуємо шрифт заголовку */
+      margin-bottom: 1rem; /* Менше відступу */
+    }
+  
+    .login-input, .login-button {
+      padding: 1rem; /* Більше padding для кращого вигляду на мобільному */
+      font-size: 1.1rem; /* Збільшуємо шрифт для кращої читабельності */
+    }
+  }
+  
+  /* Адаптивний дизайн для дуже малих екранів (телефони в портретному режимі) */
+  @media (max-width: 480px) {
+    .login-box {
+      padding: 1.5rem; /* Зменшення padding для дуже малих екранів */
+      max-width: 100%; /* Використовуємо всю ширину екрану */
+    }
+  
+    .login-title {
+      font-size: 1rem; /* Ще більше зменшуємо шрифт заголовку */
+    }
+  
+    .login-input, .login-button {
+      padding: 0.8rem; /* Зменшення padding */
+      font-size: 1rem; /* Зменшення шрифту */
+    }
+  }
+  

@@ -14,7 +14,7 @@
   
   /* Легке підняття футера при наведенні */
   .footer:hover {
-    transform: translateY(4px); /* Легке підняття при наведенні */
+    
     box-shadow: 0 15px 30px rgba(250, 194, 21, 0.6); /* Сильна жовта тінь */
     filter: brightness(1.1); /* Яскравіший ефект */
   }
@@ -47,4 +47,6 @@
       transform: scale(1);
     }
   }
-  
+  .footer {
+    overflow: hidden;
+  }
