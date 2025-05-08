@@ -1,0 +1,26 @@
+.navbar {
+    background-color: #000;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+  
+  .navbar-left,
+  .navbar-right {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  
+  .nav-link:hover {
+    color: #facc15; /* Жовтий при наведенні */
+  }
+  
