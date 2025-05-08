@@ -1,26 +1,111 @@
+/* Фон для навбара */
 .navbar {
-    background-color: #000;
-    height: 30px;
+    background: #111; /* Тёмний фон */
+    height: 70px; /* Зменшено висоту */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
+    box-shadow: 0 8px 16px rgba(250, 194, 21, 0.4); /* М'яка жовта тінь */
+    border-bottom: 4px solid #facc15; /* Жовта лінія внизу */
+    transition: box-shadow 0.5s ease-in-out, transform 0.5s ease-in-out, filter 0.3s ease-in-out;
+    position: relative;
+    border-radius: 0px; /* Забрані заокруглені кути */
   }
   
+  /* Легке підняття та анімація наведеного стану */
+  .navbar:hover {
+    transform: translateY(-6px); /* Легке підняття при наведенні */
+    box-shadow: 0 15px 30px rgba(250, 194, 21, 0.6); /* Сильна жовта тінь */
+    filter: brightness(1.1); /* Трохи яскравіший ефект */
+  }
+  
+  /* Лівий та правий блоки меню */
   .navbar-left,
   .navbar-right {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem; /* Зменшено відстань між елементами */
   }
   
+  /* Стиль для посилань */
   .nav-link {
     color: white;
     text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.2s;
+    font-size: 1rem; /* Зменшено розмір шрифту */
+    font-weight: 600;
+    transition: all 0.3s ease-in-out; /* Плавніші переходи */
+    padding: 0.5rem 1rem; /* Зменшено відступи */
+    border-radius: 15px; /* Легке заокруглення */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase; /* Перетворення тексту на великі літери */
+    letter-spacing: 1px; /* Легке збільшення відстані між літерами */
+    background-color: transparent;
+    border: 2px solid transparent; /* Без обводки по замовчуванню */
+    box-shadow: 0 0 6px rgba(250, 194, 21, 0.7); /* Легке неонове світло */
   }
   
+  /* Неонове світло на ховері */
   .nav-link:hover {
-    color: #facc15; /* Жовтий при наведенні */
+    color: #000;
+    transform: scale(1.05); /* Легке збільшення при наведенні */
+    background-color: #facc15; /* Жовтий фон */
+    box-shadow: 0 0 20px 5px #facc15, 0 0 30px 5px rgba(250, 194, 21, 0.5); /* Яскраве неонове світло */
+    text-shadow: 0 0 10px #facc15; /* Неоновий текст */
+    animation: pulse 1s infinite; /* Пульсуючий ефект */
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Плавний перехід на фон і трансформацію */
+  }
+  
+  /* Підсвітка псевдоелемента */
+  .nav-link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #facc15;
+    border-radius: 15px; /* Легке заокруглення */
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    z-index: -1;
+  }
+  
+  .nav-link:hover::before {
+    opacity: 1; /* Підсвітка за допомогою псевдоелемента */
+    transform: scale(1.2); /* Більше збільшення підсвітки */
+  }
+  
+  /* Зменшення кнопки при натисканні */
+  .nav-link:active {
+    transform: scale(0.95); /* Зменшення кнопки при натисканні */
+    transition: transform 0.2s ease-in-out; /* Плавний перехід при натисканні */
+  }
+  
+  /* Пульсуючий ефект */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05); /* Легке збільшення */
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Покращення для правої та лівої частини навбара */
+  .navbar-left .nav-link, .navbar-right .nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .navbar-left .nav-link:hover, .navbar-right .nav-link:hover {
+    transform: scale(1.05); /* Плавне збільшення при наведенні */
   }
   
