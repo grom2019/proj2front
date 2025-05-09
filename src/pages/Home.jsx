@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Home.css';
 
 const Home = () => {
   const [activeBranch, setActiveBranch] = useState(null);
+  const navigate = useNavigate();
 
   const emblem =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_the_Ukrainian_Armed_Forces.svg/250px-Emblem_of_the_Ukrainian_Armed_Forces.svg.png";
@@ -12,33 +14,38 @@ const Home = () => {
       name: "Сухопутні війська",
       image: emblem,
       commands: [
-        { name: "ОК 'Схід'", image: emblem },
-        { name: "ОК 'Захід'", image: emblem },
-        { name: "ОК 'Південь'", image: emblem },
-        { name: "ОК 'Північ'", image: emblem },
+        { name: "ОК 'Схід'", id: "ok-skhid" },
+        { name: "ОК 'Захід'", id: "ok-zakhid" },
+        { name: "ОК 'Південь'", id: "ok-pivden" },
+        { name: "ОК 'Північ'", id: "ok-pivnich" },
       ],
     },
     {
       name: "Повітряні сили",
       image: emblem,
       commands: [
-        { name: "Центр", image: emblem },
-        { name: "Захід", image: emblem },
-        { name: "Південь", image: emblem },
-        { name: "Схід", image: emblem },
+        { name: "Центр", id: "center" },
+        { name: "Захід", id: "zakhid" },
+        { name: "Південь", id: "pivden" },
+        { name: "Схід", id: "skhid" },
       ],
     },
     {
       name: "Військово-морські сили",
       image: emblem,
       commands: [
-        { name: "Командування ВМС", image: emblem },
-        { name: "Морська піхота", image: emblem },
-        { name: "Флот", image: emblem },
-        { name: "Берегова охорона", image: emblem },
+        { name: "Командування ВМС", id: "vms" },
+        { name: "Морська піхота", id: "mp" },
+        { name: "Флот", id: "flot" },
+        { name: "Берегова охорона", id: "bo" },
       ],
     },
   ];
+
+  const handleCommandClick = (commandId) => {
+    // Перехід на сторінку бригад із передачею id команди
+    navigate(`/brigades/${commandId}`);
+  };
 
   return (
     <div className="home-container">
@@ -62,7 +69,11 @@ const Home = () => {
             <h2>{activeBranch.name}</h2>
             <div className="commands-row">
               {activeBranch.commands.map((cmd, index) => (
-                <div key={index} className="command-card">
+                <div
+                  key={index}
+                  className="command-card"
+                  onClick={() => handleCommandClick(cmd.id)}
+                >
                   <img src={cmd.image} alt={cmd.name} className="command-image" />
                   <p className="command-name">{cmd.name}</p>
                 </div>

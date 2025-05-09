@@ -1,19 +1,18 @@
-// src/pages/BrigadePage.jsx
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const brigadeData = {
-  '92-ombr': {
+  'ok-skhid': {
     name: '92 окрема механізована бригада',
     description: 'Бригада названа на честь кошового отамана Івана Сірка. Бере активну участь у бойових діях на Сході України.',
     image: '/images/92ombr.jpg',
   },
-  '93-ombr': {
+  'ok-zakhid': {
     name: '93 окрема механізована бригада',
     description: 'Бригада "Холодний Яр" відома своєю героїчною участю у бойових діях, має велику кількість нагороджених бійців.',
     image: '/images/93ombr.jpg',
   },
-  '36-mpbr': {
+  'ok-pivden': {
     name: '36 окрема бригада морської піхоти',
     description: 'Бригада морської піхоти, названа на честь контрадмірала Михайла Білинського, виконує завдання в прибережних районах.',
     image: '/images/36mpbr.jpg',
