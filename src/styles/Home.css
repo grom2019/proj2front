@@ -1,16 +1,20 @@
+/* Основні стилі для темної теми */
 .home-container {
   max-width: 960px;
   margin: 0 auto;
   padding: 1.5rem;
   position: relative;
+  background-color: #111; /* Темний фон */
+  color: #facc15; /* Жовтий текст */
 }
 
 .home-title {
   font-size: 2.5rem;
   font-weight: bold;
   text-align: center;
-  color: #1f2937;
+  color: #facc15;
   margin-bottom: 2rem;
+  text-transform: uppercase;
 }
 
 .branch-grid {
@@ -21,10 +25,10 @@
 }
 
 .branch-card {
-  background-color: #fff;
+  background-color: #1a1a1a; /* Темний фон для картки */
   padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(250, 194, 21, 0.4);
   text-align: center;
   transition: transform 0.3s ease;
   cursor: pointer;
@@ -46,17 +50,17 @@
 .branch-name {
   font-size: 1.125rem;
   font-weight: 500;
-  color: #374151;
+  color: #facc15; /* Жовтий текст */
 }
 
-/* Overlay styles */
+/* Overlay для активної гілки */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(220, 38, 38, 0.95); /* red background */
+  background-color: rgba(220, 38, 38, 0.95); /* Червоний фон */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,10 +68,10 @@
 }
 
 .overlay-box {
-  background-color: #dc2626;
+  background-color: #1a1a1a;
   padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(250, 194, 21, 0.4);
   max-width: 800px;
   width: 90%;
   text-align: center;
@@ -81,19 +85,17 @@
   padding: 1rem 0;
   justify-content: center;
   flex-wrap: nowrap;
-  scroll-snap-type: x mandatory;
 }
 
 .command-card {
-  background-color: #fef2f2;
+  background-color: #2c2c2c;
   padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(250, 194, 21, 0.3);
   text-align: center;
   transition: transform 0.3s ease;
   cursor: pointer;
   min-width: 160px;
-  scroll-snap-align: center;
 }
 
 .command-card:hover {
@@ -115,18 +117,42 @@
   color: white;
 }
 
+/* Кнопка назад */
 .back-btn {
   margin-top: 1.5rem;
-  background-color: white;
-  color: red;
-  padding: 0.5rem 1.5rem;
+  background-color: transparent;
+  color: #facc15;
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
-  border: none;
-  border-radius: 9999px;
+  border: 2px solid #facc15;
+  border-radius: 15px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .back-btn:hover {
-  background-color: #f3f4f6;
+  background-color: #facc15;
+  color: #111;
+  transform: scale(1.05);
+}
+
+/* Адаптивний дизайн */
+@media (max-width: 768px) {
+  .branch-card {
+    padding: 1rem;
+  }
+
+  .overlay-box {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    padding: 1rem;
+  }
+
+  .overlay-box {
+    padding: 1rem;
+  }
 }

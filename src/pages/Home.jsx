@@ -68,7 +68,9 @@ const Home = () => {
                 </div>
               ))}
             </div>
-            <button className="back-btn" onClick={() => setActiveBranch(null)}>Назад</button>
+            <button className="back-btn" onClick={() => setActiveBranch(null)}>
+              Назад
+            </button>
           </div>
         </div>
       )}
