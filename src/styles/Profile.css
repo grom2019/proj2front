@@ -1,43 +1,16 @@
-/* === GlobalStyles.css === */
-
-/* Global Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-}
-
-/* Container Styles */
-.container,
-.profile-container,
-.login-container,
-.home-container {
-  max-width: 100%;
-  width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-/* Header */
-.header {
-  margin-bottom: 20px;
-}
-
-/* Avatar */
-.avatar-container {
+.profile-container {
   display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+  flex-direction: column;
+  align-items: center;
+  background-color: #111;
+  min-height: 100vh;
+  color: #facc15;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.avatar-container {
+  margin-bottom: 1.5rem;
 }
 
 .avatar {
@@ -45,165 +18,75 @@ body {
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #ccc;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 3px solid #facc15;
+  box-shadow: 0 0 10px #facc15;
 }
 
-/* Titles */
 h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #2e2e2e;
+  color: #facc15;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Buttons */
-button,
-.button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  display: block;
-  width: 100%;
-  margin: 10px 0;
-}
-
-button:hover,
-.button:hover {
-  background-color: #45a049;
-}
-
-/* Inputs */
-input,
-.input {
-  width: 100%;
-  max-width: 400px;
-  margin: 10px auto;
-  padding: 12px 16px;
-  font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  display: block;
-}
-
-input:focus {
-  border-color: #4CAF50;
-  outline: none;
-}
-
-input[type="date"] {
-  padding: 10px;
-}
-
-input[readonly] {
-  background-color: #f1f1f1;
-  cursor: not-allowed;
-}
-
-/* Labels */
-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 8px;
-  text-align: left;
-  color: #444;
-}
-
-/* Form */
 form {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  background-color: #1a1a1a;
+  padding: 2rem;
+  border-radius: 20px;
+  border: 2px solid #facc15;
+  box-shadow: 0 8px 16px rgba(250, 194, 21, 0.3);
+  width: 100%;
+  max-width: 600px;
+  margin-top: 1rem;
 }
 
 form div {
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-/* Paragraphs */
+form label {
+  margin-bottom: 0.5rem;
+  color: #facc15;
+  font-weight: bold;
+}
+
+form input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 2px solid #facc15;
+  background-color: #000;
+  color: #facc15;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s;
+}
+
+form input:focus {
+  box-shadow: 0 0 10px #facc15;
+}
+
+button {
+  background-color: transparent;
+  border: 2px solid #facc15;
+  color: #facc15;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #facc15;
+  color: #111;
+}
+
 p {
-  font-size: 1.1rem;
-  margin: 8px 0;
-}
-
-.profile-container p {
-  font-size: 18px;
-}
-
-strong {
-  color: #4CAF50;
-}
-
-/* Captcha */
-.captcha {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-/* Navigation */
-.nav {
-  padding: 10px 0;
-  background: #f0f0f0;
-  text-align: center;
-}
-
-.nav-link {
-  margin: 0 10px;
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.nav-link:hover {
-  color: #4CAF50;
-}
-
-.nav-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding: 10px;
-}
-
-/* Responsive */
-@media screen and (max-width: 768px) {
-  .button,
-  .input {
-    width: 100%;
-  }
-
-  .nav-link {
-    margin: 0 5px;
-  }
-
-  .home-container {
-    padding: 15px;
-  }
-}
-
-html, body {
-  overflow-x: hidden;
-  max-width: 100vw;
-}
-
-img, iframe {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-.grid-container,
-.container,
-.profile-container,
-.home-container {
-  overflow-x: hidden;
+  margin: 0.5rem 0;
+  font-size: 1rem;
 }
