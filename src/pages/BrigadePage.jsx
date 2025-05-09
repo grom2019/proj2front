@@ -3,14 +3,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/BrigadeCarousel.css';
 
 const brigadeData = {
-  'ok-skhid': { name: '92 ОМБр', description: '...', image: '/images/92ombr.jpg' },
-  'ok-zakhid': { name: '93 ОМБр', description: '...', image: '/images/93ombr.jpg' },
-  'ok-pivden': { name: '36 МПБр', description: '...', image: '/images/36mpbr.jpg' },
-  'ok-center': { name: '30 ОМБр', description: '...', image: '/images/30ombr.jpg' },
-  'ok-reserve': { name: '10 ГШБр', description: '...', image: '/images/10gsbr.jpg' },
+  'ok-skhid': { name: '92 ОМБр', description: '...', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_the_Ukrainian_Armed_Forces.svg/250px-Emblem_of_the_Ukrainian_Armed_Forces.svg.png' },
+  'ok-zakhid': { name: '93 ОМБр', description: '...', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_the_Ukrainian_Armed_Forces.svg/250px-Emblem_of_the_Ukrainian_Armed_Forces.svg.png' },
+  'ok-pivden': { name: '36 МПБр', description: '...', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_the_Ukrainian_Armed_Forces.svg/250px-Emblem_of_the_Ukrainian_Armed_Forces.svg.png' },
+  'ok-center': { name: '30 ОМБр', description: '...', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_the_Ukrainian_Armed_Forces.svg/250px-Emblem_of_the_Ukrainian_Armed_Forces.svg.png' },
+  'ok-reserve': { name: '10 ГШБр', description: '...', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_the_Ukrainian_Armed_Forces.svg/250px-Emblem_of_the_Ukrainian_Armed_Forces.svg.png' },
 };
-
-const defaultCarouselImage = 'https://upload.wikimedia.org/...svg.png';
 
 const BrigadePage = () => {
   const { brigadeId } = useParams();
@@ -48,7 +46,7 @@ const BrigadePage = () => {
             className="brigade-card active-brigade"
           >
             <img
-              src={currentBrigade[1].image || defaultCarouselImage}
+              src={currentBrigade[1].image}
               alt={currentBrigade[1].name}
               className="brigade-image"
             />
@@ -59,6 +57,11 @@ const BrigadePage = () => {
           </div>
         </div>
         <button onClick={() => scroll('right')} className="carousel-button right">▶</button>
+      </div>
+
+      {/* Кнопка повернення назад */}
+      <div className="back-to-ok-container">
+        <button onClick={() => navigate('/ok')} className="back-to-ok-button">Повернутися до ОК</button>
       </div>
     </div>
   );
