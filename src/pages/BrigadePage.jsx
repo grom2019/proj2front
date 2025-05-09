@@ -1,85 +1,64 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/BrigadeCarousel.css';
 
 const brigadeData = {
-  'ok-skhid': {
-    name: '92 окрема механізована бригада',
-    description: 'Бригада названа на честь кошового отамана Івана Сірка. Бере активну участь у бойових діях на Сході України.',
-    image: '/images/92ombr.jpg',
-  },
-  'ok-zakhid': {
-    name: '93 окрема механізована бригада',
-    description: 'Бригада "Холодний Яр" відома своєю героїчною участю у бойових діях, має велику кількість нагороджених бійців.',
-    image: '/images/93ombr.jpg',
-  },
-  'ok-pivden': {
-    name: '36 окрема бригада морської піхоти',
-    description: 'Бригада морської піхоти, названа на честь контрадмірала Михайла Білинського, виконує завдання в прибережних районах.',
-    image: '/images/36mpbr.jpg',
-  },
+  'ok-skhid': { name: '92 ОМБр', description: '...', image: '/images/92ombr.jpg' },
+  'ok-zakhid': { name: '93 ОМБр', description: '...', image: '/images/93ombr.jpg' },
+  'ok-pivden': { name: '36 МПБр', description: '...', image: '/images/36mpbr.jpg' },
+  'ok-center': { name: '30 ОМБр', description: '...', image: '/images/30ombr.jpg' },
+  'ok-reserve': { name: '10 ГШБр', description: '...', image: '/images/10gsbr.jpg' },
 };
 
-const defaultCarouselImage =
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_the_Ukrainian_Armed_Forces.svg/250px-Emblem_of_the_Ukrainian_Armed_Forces.svg.png';
+const defaultCarouselImage = 'https://upload.wikimedia.org/...svg.png';
 
 const BrigadePage = () => {
   const { brigadeId } = useParams();
   const navigate = useNavigate();
-  const carouselRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(Object.keys(brigadeData).indexOf(brigadeId));
 
+  // Функція для прокрутки
+  const scroll = (direction) => {
+    setCurrentIndex((prevIndex) => {
+      const maxIndex = Object.keys(brigadeData).length - 1;
+      const newIndex = direction === 'left' ? prevIndex - 1 : prevIndex + 1;
+      return (newIndex < 0 ? maxIndex : newIndex > maxIndex ? 0 : newIndex);
+    });
+  };
+
+  // Автоматична прокрутка кожні 10 секунд
   useEffect(() => {
     const interval = setInterval(() => {
-      if (carouselRef.current) {
-        carouselRef.current.scrollBy({ left: 240, behavior: 'smooth' });
-      }
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % Object.keys(brigadeData).length);
     }, 10000);
     return () => clearInterval(interval);
   }, []);
 
-  const handleNavigate = (id) => {
-    navigate(`/brigades/${id}`);
-  };
-
-  const scroll = (direction) => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollBy({
-        left: direction === 'left' ? -240 : 240,
-        behavior: 'smooth',
-      });
-    }
-  };
+  const currentBrigade = Object.entries(brigadeData)[currentIndex];
 
   return (
     <div className="brigade-carousel-container">
-      <h2 className="brigade-carousel-title">Інші бригади</h2>
+      <h2 className="brigade-carousel-title">Бригада: {currentBrigade[1].name}</h2>
       <div className="carousel-wrapper">
-        <button onClick={() => scroll('left')} className="carousel-button left">
-          ◀
-        </button>
-        <div ref={carouselRef} className="carousel-track">
-          {Object.entries(brigadeData)
-            .filter(([id]) => id !== brigadeId)
-            .map(([id, b]) => (
-              <div
-                key={id}
-                onClick={() => handleNavigate(id)}
-                className="brigade-card"
-              >
-                <img
-                  src={defaultCarouselImage}
-                  alt="Емблема ЗСУ"
-                  className="brigade-image"
-                />
-                <div className="brigade-text">
-                  <h3>{b.name}</h3>
-                </div>
-              </div>
-            ))}
+        <button onClick={() => scroll('left')} className="carousel-button left">◀</button>
+        <div className="carousel-track">
+          <div
+            key={currentBrigade[0]}
+            onClick={() => navigate(`/brigades/${currentBrigade[0]}`)}
+            className="brigade-card active-brigade"
+          >
+            <img
+              src={currentBrigade[1].image || defaultCarouselImage}
+              alt={currentBrigade[1].name}
+              className="brigade-image"
+            />
+            <div className="brigade-text">
+              <h3>{currentBrigade[1].name}</h3>
+              <p>{currentBrigade[1].description}</p>
+            </div>
+          </div>
         </div>
-        <button onClick={() => scroll('right')} className="carousel-button right">
-          ▶
-        </button>
+        <button onClick={() => scroll('right')} className="carousel-button right">▶</button>
       </div>
     </div>
   );
