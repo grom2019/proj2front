@@ -12,20 +12,20 @@ import Footer from './components/Footer';
 import BrigadePage from './pages/BrigadePage';
 import './styles/App.css';
 
-
 function App() {
   return (
     <Router>
       <div className="app-container">
         <Navbar />
-        <main >
+        <main>
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/verify-email" element={<VerifyEmail />} />
             <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-            <Route path="/brigade/:brigadeId" element={<BrigadePage />} />
+            {/* Оновлений маршрут для бригад */}
+            <Route path="/brigades/:brigadeId" element={<BrigadePage />} />
             <Route path="/" element={<Login />} />
           </Routes>
         </main>
