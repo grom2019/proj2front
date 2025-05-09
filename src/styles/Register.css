@@ -1,4 +1,4 @@
-/* Обгортка для вирівнювання по центру */
+/* Основна обгортка */
 .login-wrapper {
     display: flex;
     justify-content: center;
@@ -7,7 +7,7 @@
     background-color: #111;
   }
   
-  /* Блок форми */
+  /* Контейнер форми */
   .login-box {
     background-color: #1a1a1a;
     padding: 3rem;
@@ -79,6 +79,13 @@
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
+  }
+  
+  /* ReCAPTCHA — центровано */
+  .recaptcha-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
   }
   
   /* Адаптивність */

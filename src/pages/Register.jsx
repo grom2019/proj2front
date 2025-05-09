@@ -10,7 +10,7 @@ function Register() {
   const [captchaToken, setCaptchaToken] = useState('');
 
   const registerUser = async () => {
-    if (!captchaToken) return alert('Please complete the CAPTCHA');
+    if (!captchaToken) return alert('Будь ласка, підтвердіть CAPTCHA');
 
     try {
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/register`, {
@@ -19,20 +19,43 @@ function Register() {
         password,
         token: captchaToken,
       });
-      alert('Registration successful! Check your email.');
+      alert('Реєстрація успішна! Перевірте email.');
     } catch (err) {
-      alert('Registration failed: ' + err.response?.data?.error);
+      alert('Помилка реєстрації: ' + err.response?.data?.error);
     }
   };
 
   return (
-    <div className="container">
-      <h2 className="header">Register</h2>
-      <ReCAPTCHA sitekey="6Lcs9S4rAAAAAKzHGzwB2QyHzHI46x24Z3VmR1L7" onChange={setCaptchaToken} />
-      <input className="input" placeholder="Username" onChange={e => setUsername(e.target.value)} />
-      <input type="email" className="input" placeholder="Email" onChange={e => setEmail(e.target.value)} />
-      <input type="password" className="input" placeholder="Password" onChange={e => setPassword(e.target.value)} />
-      <button className="button" onClick={registerUser}>Register</button>
+    <div className="login-wrapper">
+      <div className="login-box">
+        <h2 className="login-title">Реєстрація</h2>
+        <div className="recaptcha-wrapper">
+          <ReCAPTCHA
+            sitekey="6Lcs9S4rAAAAAKzHGzwB2QyHzHI46x24Z3VmR1L7"
+            onChange={setCaptchaToken}
+          />
+        </div>
+        <input
+          className="login-input"
+          placeholder="Ім’я користувача"
+          onChange={e => setUsername(e.target.value)}
+        />
+        <input
+          type="email"
+          className="login-input"
+          placeholder="Email"
+          onChange={e => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          className="login-input"
+          placeholder="Пароль"
+          onChange={e => setPassword(e.target.value)}
+        />
+        <button className="login-button" onClick={registerUser}>
+          Зареєструватися
+        </button>
+      </div>
     </div>
   );
 }
