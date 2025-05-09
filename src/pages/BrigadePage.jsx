@@ -51,42 +51,33 @@ const BrigadePage = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-4 text-center">Інші бригади</h2>
-      <div className="relative">
-        <button
-          onClick={() => scroll('left')}
-          className="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-300 hover:bg-gray-400 p-2 rounded-full shadow z-10"
-        >
+    <div className="brigade-carousel-container">
+      <h2 className="brigade-carousel-title">Інші бригади</h2>
+      <div className="carousel-wrapper">
+        <button onClick={() => scroll('left')} className="carousel-button left">
           ◀
         </button>
-        <div
-          ref={carouselRef}
-          className="flex overflow-x-auto space-x-4 pb-4 scroll-smooth scrollbar-hide"
-        >
+        <div ref={carouselRef} className="carousel-track">
           {Object.entries(brigadeData)
             .filter(([id]) => id !== brigadeId)
             .map(([id, b]) => (
               <div
                 key={id}
                 onClick={() => handleNavigate(id)}
-                className="min-w-[220px] cursor-pointer rounded-xl shadow-lg hover:scale-105 transition-transform bg-white"
+                className="brigade-card"
               >
                 <img
                   src={defaultCarouselImage}
                   alt="Емблема ЗСУ"
-                  className="w-full h-40 object-contain p-2 bg-white rounded-t-xl"
+                  className="brigade-image"
                 />
-                <div className="p-4 text-center">
-                  <h3 className="font-semibold text-md">{b.name}</h3>
+                <div className="brigade-text">
+                  <h3>{b.name}</h3>
                 </div>
               </div>
             ))}
         </div>
-        <button
-          onClick={() => scroll('right')}
-          className="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-300 hover:bg-gray-400 p-2 rounded-full shadow z-10"
-        >
+        <button onClick={() => scroll('right')} className="carousel-button right">
           ▶
         </button>
       </div>
