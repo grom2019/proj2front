@@ -58,9 +58,9 @@ const Home = () => {
 
       {activeBranch && (
         <div className="overlay">
-          <div className="overlay-content">
+          <div className="overlay-box">
             <h2>{activeBranch.name}</h2>
-            <div className="commands-grid">
+            <div className="commands-row">
               {activeBranch.commands.map((cmd, index) => (
                 <div key={index} className="command-card">
                   <img src={cmd.image} alt={cmd.name} className="command-image" />
@@ -68,7 +68,7 @@ const Home = () => {
                 </div>
               ))}
             </div>
-            <button className="close-btn" onClick={() => setActiveBranch(null)}>Закрити</button>
+            <button className="back-btn" onClick={() => setActiveBranch(null)}>Назад</button>
           </div>
         </div>
       )}
