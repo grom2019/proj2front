@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import ReCAPTCHA from 'react-google-recaptcha';
+import '../styles/Register.css';
 
 function Register() {
   const [username, setUsername] = useState('');
