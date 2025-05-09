@@ -25,29 +25,20 @@ const BrigadePage = () => {
   const brigade = brigadeData[brigadeId];
   const carouselRef = useRef(null);
 
-  if (!brigade) {
-    return (
-      <div className="p-6 text-center">
-        <h2 className="text-2xl font-bold text-red-600">Бригаду не знайдено</h2>
-      </div>
-    );
-  }
-
-  const handleNavigate = (id) => {
-    navigate(`/brigades/${id}`);
-  };
-
-  // Автоматичне прокручування
+  // Автоматична прокрутка кожні 10 секунд
   useEffect(() => {
     const interval = setInterval(() => {
       if (carouselRef.current) {
         carouselRef.current.scrollBy({ left: 240, behavior: 'smooth' });
       }
-    }, 10000); // кожні 10 секунд
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 
-  // Прокрутка вручну
+  const handleNavigate = (id) => {
+    navigate(`/brigades/${id}`);
+  };
+
   const scroll = (direction) => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({
@@ -56,6 +47,14 @@ const BrigadePage = () => {
       });
     }
   };
+
+  if (!brigade) {
+    return (
+      <div className="p-6 text-center">
+        <h2 className="text-2xl font-bold text-red-600">Бригаду не знайдено</h2>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-5xl mx-auto p-6">
@@ -80,7 +79,6 @@ const BrigadePage = () => {
       {/* Карусель бригад з кнопками */}
       <h2 className="text-2xl font-bold mb-4 text-center">Інші бригади</h2>
       <div className="relative">
-        {/* Кнопки прокрутки */}
         <button
           onClick={() => scroll('left')}
           className="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-300 hover:bg-gray-400 p-2 rounded-full shadow z-10"
@@ -91,22 +89,24 @@ const BrigadePage = () => {
           ref={carouselRef}
           className="flex overflow-x-auto space-x-4 pb-4 scroll-smooth scrollbar-hide"
         >
-          {Object.entries(brigadeData).map(([id, b]) => (
-            <div
-              key={id}
-              onClick={() => handleNavigate(id)}
-              className="min-w-[220px] cursor-pointer rounded-xl shadow-lg hover:scale-105 transition-transform bg-white"
-            >
-              <img
-                src={b.image}
-                alt={b.name}
-                className="w-full h-40 object-cover rounded-t-xl"
-              />
-              <div className="p-4 text-center">
-                <h3 className="font-semibold text-md">{b.name}</h3>
+          {Object.entries(brigadeData)
+            .filter(([id]) => id !== brigadeId) // не показувати поточну бригаду
+            .map(([id, b]) => (
+              <div
+                key={id}
+                onClick={() => handleNavigate(id)}
+                className="min-w-[220px] cursor-pointer rounded-xl shadow-lg hover:scale-105 transition-transform bg-white"
+              >
+                <img
+                  src={b.image}
+                  alt={b.name}
+                  className="w-full h-40 object-cover rounded-t-xl"
+                />
+                <div className="p-4 text-center">
+                  <h3 className="font-semibold text-md">{b.name}</h3>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
         <button
           onClick={() => scroll('right')}
