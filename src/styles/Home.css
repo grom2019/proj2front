@@ -60,7 +60,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(220, 38, 38, 0.95); /* Червоний фон */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,7 +71,7 @@
   padding: 2rem;
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(250, 194, 21, 0.4);
-  max-width: 800px;
+  max-width: 900px;
   width: 90%;
   text-align: center;
   color: white;
