@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import '../styles/BrigadeCarousel.css';
 
 const brigadeData = {
   'ok-skhid': {
@@ -19,13 +20,14 @@ const brigadeData = {
   },
 };
 
+const defaultCarouselImage =
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_the_Ukrainian_Armed_Forces.svg/250px-Emblem_of_the_Ukrainian_Armed_Forces.svg.png';
+
 const BrigadePage = () => {
   const { brigadeId } = useParams();
   const navigate = useNavigate();
-  const brigade = brigadeData[brigadeId];
   const carouselRef = useRef(null);
 
-  // Автоматична прокрутка кожні 10 секунд
   useEffect(() => {
     const interval = setInterval(() => {
       if (carouselRef.current) {
@@ -48,35 +50,8 @@ const BrigadePage = () => {
     }
   };
 
-  if (!brigade) {
-    return (
-      <div className="p-6 text-center">
-        <h2 className="text-2xl font-bold text-red-600">Бригаду не знайдено</h2>
-      </div>
-    );
-  }
-
   return (
     <div className="max-w-5xl mx-auto p-6">
-      {/* Інформація про бригаду */}
-      <h1 className="text-3xl font-bold mb-4 text-center">{brigade.name}</h1>
-      <img
-        src={brigade.image}
-        alt={brigade.name}
-        className="w-full rounded-2xl shadow-md mb-6"
-      />
-      <p className="text-lg leading-7 text-gray-800 mb-6">{brigade.description}</p>
-
-      <div className="text-center mb-12">
-        <button
-          onClick={() => navigate(-1)}
-          className="px-6 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-xl"
-        >
-          Назад
-        </button>
-      </div>
-
-      {/* Карусель бригад з кнопками */}
       <h2 className="text-2xl font-bold mb-4 text-center">Інші бригади</h2>
       <div className="relative">
         <button
@@ -90,7 +65,7 @@ const BrigadePage = () => {
           className="flex overflow-x-auto space-x-4 pb-4 scroll-smooth scrollbar-hide"
         >
           {Object.entries(brigadeData)
-            .filter(([id]) => id !== brigadeId) // не показувати поточну бригаду
+            .filter(([id]) => id !== brigadeId)
             .map(([id, b]) => (
               <div
                 key={id}
@@ -98,9 +73,9 @@ const BrigadePage = () => {
                 className="min-w-[220px] cursor-pointer rounded-xl shadow-lg hover:scale-105 transition-transform bg-white"
               >
                 <img
-                  src={b.image}
-                  alt={b.name}
-                  className="w-full h-40 object-cover rounded-t-xl"
+                  src={defaultCarouselImage}
+                  alt="Емблема ЗСУ"
+                  className="w-full h-40 object-contain p-2 bg-white rounded-t-xl"
                 />
                 <div className="p-4 text-center">
                   <h3 className="font-semibold text-md">{b.name}</h3>
