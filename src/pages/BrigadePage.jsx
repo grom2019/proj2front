@@ -15,6 +15,7 @@ const BrigadePage = () => {
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(Object.keys(brigadeData).indexOf(brigadeId));
 
+  // Функція для прокрутки
   const scroll = (direction) => {
     setCurrentIndex((prevIndex) => {
       const maxIndex = Object.keys(brigadeData).length - 1;
@@ -23,6 +24,7 @@ const BrigadePage = () => {
     });
   };
 
+  // Автоматична прокрутка кожні 10 секунд
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % Object.keys(brigadeData).length);
@@ -56,6 +58,8 @@ const BrigadePage = () => {
         </div>
         <button onClick={() => scroll('right')} className="carousel-button right">▶</button>
       </div>
+
+      {/* Кнопка повернення назад */}
       <div className="back-to-ok-container">
         <button onClick={() => navigate('/ok')} className="back-to-ok-button">Повернутися до ОК</button>
       </div>

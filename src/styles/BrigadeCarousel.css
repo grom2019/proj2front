@@ -1,75 +1,64 @@
 .brigade-carousel-container {
   max-width: 100%;
-  height: 100vh;
+  height: 100vh; /* Збільшено висоту на весь екран */
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f9fafb; /* Легкий фон для контрасту */
 }
 
 .brigade-carousel-title {
-  font-size: 36px;
-  font-weight: 600;
+  font-size: 32px;
   margin-bottom: 20px;
   text-align: center;
-  color: #1f2937; /* Темний текст */
 }
 
 .carousel-wrapper {
   position: relative;
-  width: 80%;
-  height: 80%; /* Більша висота каруселі */
+  width: 80%; /* Карусель займає 80% ширини екрану */
+  height: 70%; /* Карусель займає 70% висоти екрану */
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  transition: transform 0.3s ease-in-out;
 }
 
 .carousel-button {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #ccc;
+
   border: none;
   padding: 20px;
   border-radius: 50%;
   cursor: pointer;
-  color: white;
-  font-size: 20px;
   z-index: 1;
-  transition: background-color 0.3s, transform 0.3s;
 }
-
-.carousel-button:hover {
-  background-color: rgba(0, 0, 0, 0.8); /* Темніший фон при наведенні */
-  transform: scale(1.1); /* Збільшення кнопки при наведенні */
+.carousel-button:hover{
+  transform: scale(1.5);
 }
 
 .carousel-track {
   display: flex;
   justify-content: center;
-  gap: 24px;
+  gap: 16px;
   overflow: hidden;
   width: 100%;
   height: 100%;
-  transition: transform 0.3s ease-in-out;
 }
 
 .brigade-card {
-  width: 350px;
-  height: 100%;
-  transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s ease-in-out;
+  width: 350px; /* Збільшена ширина картки */
+  height: 80%;
+  transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  opacity: 0.9;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  opacity: 0.8;
 }
 
 .brigade-card:hover {
-  transform: scale(1.1); /* Збільшення картки при наведенні */
-  opacity: 1;
+  transform: scale(1.5);
 }
 
 .brigade-card img.brigade-image {
@@ -82,56 +71,32 @@
 
 .brigade-text {
   text-align: center;
-  padding: 15px;
-  color: #1f2937;
-}
-
-.brigade-text h3 {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.brigade-text p {
-  font-size: 14px;
-  color: #6b7280;
+  padding: 10px;
 }
 
 .active-brigade {
-  transform: scale(1.2); /* Збільшення активної картки */
+  
   opacity: 1;
   z-index: 2;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .back-to-ok-container {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .back-to-ok-button {
-  background-color: #facc15;
+  background-color: #facc15; /* Жовтий фон */
+  color: black;
   border: none;
-  padding: 15px 40px;
+  padding: 15px 30px;
   border-radius: 50px;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s, transform 0.3s;
-  color: #1f2937;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: background-color 0.3s;
 }
 
 .back-to-ok-button:hover {
-  background-color: #e4a100;
-  transform: scale(1.05); /* Збільшення кнопки при наведенні */
-}
-
-@media (max-width: 768px) {
-  .carousel-wrapper {
-    width: 90%;
-    height: 60%;
-  }
-
-  .brigade-card {
-    width: 100%;
-  }
+  background-color: #e4a100; /* Трохи темніший жовтий при наведенні */
 }
