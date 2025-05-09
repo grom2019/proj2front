@@ -85,4 +85,42 @@
   .close-btn:hover {
     background-color: #f3f4f6;
   }
+  .commands-grid {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+  }
+  
+  .command-card {
+    background-color: #fef2f2;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .command-card:hover {
+    transform: scale(1.1);
+  }
+  
+  .command-image {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .command-name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+  }
   
