@@ -14,30 +14,30 @@ const Home = () => {
       name: "Сухопутні війська",
       image: emblem,
       commands: [
-        { name: "ОК 'Схід'", id: "ok-skhid" },
-        { name: "ОК 'Захід'", id: "ok-zakhid" },
-        { name: "ОК 'Південь'", id: "ok-pivden" },
-        { name: "ОК 'Північ'", id: "ok-pivnich" },
+        { name: "ОК 'Схід'", id: "ok-skhid", brigades: ["92 ОМБр", "79 ОМБр"] },
+        { name: "ОК 'Захід'", id: "ok-zakhid", brigades: ["123 ОМБр", "101 ОМБр"] },
+        { name: "ОК 'Південь'", id: "ok-pivden", brigades: ["17 ОМБр", "35 ОМБр"] },
+        { name: "ОК 'Північ'", id: "ok-pivnich", brigades: ["53 ОМБр", "72 ОМБр"] },
       ],
     },
     {
       name: "Повітряні сили",
       image: emblem,
       commands: [
-        { name: "Центр", id: "center" },
-        { name: "Захід", id: "zakhid" },
-        { name: "Південь", id: "pivden" },
-        { name: "Схід", id: "skhid" },
+        { name: "Центр", id: "center", brigades: ["12 ОМБр", "34 ОМБр"] },
+        { name: "Захід", id: "zakhid", brigades: ["22 ОМБр", "19 ОМБр"] },
+        { name: "Південь", id: "pivden", brigades: ["10 ОМБр", "24 ОМБр"] },
+        { name: "Схід", id: "skhid", brigades: ["5 ОМБр", "3 ОМБр"] },
       ],
     },
     {
       name: "Військово-морські сили",
       image: emblem,
       commands: [
-        { name: "Командування ВМС", id: "vms" },
-        { name: "Морська піхота", id: "mp" },
-        { name: "Флот", id: "flot" },
-        { name: "Берегова охорона", id: "bo" },
+        { name: "Командування ВМС", id: "vms", brigades: ["36 ОМБр", "24 ОМБр"] },
+        { name: "Морська піхота", id: "mp", brigades: ["28 ОМБр", "501 ОМБр"] },
+        { name: "Флот", id: "flot", brigades: ["102 ОМБр", "34 ОМБр"] },
+        { name: "Берегова охорона", id: "bo", brigades: ["35 ОМБр", "54 ОМБр"] },
       ],
     },
   ];
@@ -45,6 +45,11 @@ const Home = () => {
   const handleCommandClick = (commandId) => {
     // Перехід на сторінку бригад із передачею id команди
     navigate(`/brigades/${commandId}`);
+  };
+
+  const handleBrigadeClick = (commandId, brigadeName) => {
+    // Перехід на сторінку детальної бригади
+    navigate(`/brigades/${commandId}/${brigadeName}`);
   };
 
   return (
@@ -82,6 +87,21 @@ const Home = () => {
             <button className="back-btn" onClick={() => setActiveBranch(null)}>
               Назад
             </button>
+          </div>
+        </div>
+      )}
+
+      {activeBranch && (
+        <div>
+          <h3>Вибір бригади:</h3>
+          <div className="brigades-list">
+            {activeBranch.commands.map((cmd, index) => (
+              cmd.brigades.map((brigadeName, idx) => (
+                <div key={idx} className="brigade-card" onClick={() => handleBrigadeClick(cmd.id, brigadeName)}>
+                  <p>{brigadeName}</p>
+                </div>
+              ))
+            ))}
           </div>
         </div>
       )}
