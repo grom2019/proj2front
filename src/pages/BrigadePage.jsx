@@ -1,67 +1,65 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import brigadesByCommand from '../data/brigades'; // ІМПОРТУЄМО ДАНІ
 import '../styles/BrigadeCarousel.css';
 
-const brigadeData = {
-  'ok-skhid': { name: '92 ОМБр', description: '...', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_the_Ukrainian_Armed_Forces.svg/250px-Emblem_of_the_Ukrainian_Armed_Forces.svg.png' },
-  'ok-zakhid': { name: '93 ОМБр', description: '...', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_the_Ukrainian_Armed_Forces.svg/250px-Emblem_of_the_Ukrainian_Armed_Forces.svg.png' },
-  'ok-pivden': { name: '36 МПБр', description: '...', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_the_Ukrainian_Armed_Forces.svg/250px-Emblem_of_the_Ukrainian_Armed_Forces.svg.png' },
-  'ok-center': { name: '30 ОМБр', description: '...', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_the_Ukrainian_Armed_Forces.svg/250px-Emblem_of_the_Ukrainian_Armed_Forces.svg.png' },
-  'ok-reserve': { name: '10 ГШБр', description: '...', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_the_Ukrainian_Armed_Forces.svg/250px-Emblem_of_the_Ukrainian_Armed_Forces.svg.png' },
-};
-
 const BrigadePage = () => {
-  const { brigadeId } = useParams();
+  const { brigadeId } = useParams(); // Наприклад: ok-skhid
   const navigate = useNavigate();
-  const [currentIndex, setCurrentIndex] = useState(Object.keys(brigadeData).indexOf(brigadeId));
 
-  // Функція для прокрутки
+  const brigades = brigadesByCommand[brigadeId] || [];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [brigadeId]);
+
   const scroll = (direction) => {
     setCurrentIndex((prevIndex) => {
-      const maxIndex = Object.keys(brigadeData).length - 1;
+      const maxIndex = brigades.length - 1;
       const newIndex = direction === 'left' ? prevIndex - 1 : prevIndex + 1;
       return (newIndex < 0 ? maxIndex : newIndex > maxIndex ? 0 : newIndex);
     });
   };
 
-  // Автоматична прокрутка кожні 10 секунд
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % Object.keys(brigadeData).length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % brigades.length);
     }, 10000);
     return () => clearInterval(interval);
-  }, []);
+  }, [brigades.length]);
 
-  const currentBrigade = Object.entries(brigadeData)[currentIndex];
+  const currentBrigade = brigades[currentIndex];
+
+  if (!currentBrigade) {
+    return <div className="brigade-carousel-container">Бригаду не знайдено</div>;
+  }
 
   return (
     <div className="brigade-carousel-container">
-      <h2 className="brigade-carousel-title">Бригада: {currentBrigade[1].name}</h2>
+      <h2 className="brigade-carousel-title">Бригада: {currentBrigade.name}</h2>
       <div className="carousel-wrapper">
         <button onClick={() => scroll('left')} className="carousel-button left">◀</button>
         <div className="carousel-track">
-          <div
-            key={currentBrigade[0]}
-            onClick={() => navigate(`/brigades/${currentBrigade[0]}`)}
-            className="brigade-card active-brigade"
-          >
+          <div className="brigade-card active-brigade">
             <img
-              src={currentBrigade[1].image}
-              alt={currentBrigade[1].name}
+              src={currentBrigade.image}
+              alt={currentBrigade.name}
               className="brigade-image"
             />
             <div className="brigade-text">
-              <h3>{currentBrigade[1].name}</h3>
-              <p>{currentBrigade[1].description}</p>
+              <h3>{currentBrigade.name}</h3>
+              <p>{currentBrigade.description}</p>
             </div>
           </div>
         </div>
         <button onClick={() => scroll('right')} className="carousel-button right">▶</button>
       </div>
 
-      {/* Кнопка повернення назад */}
       <div className="back-to-ok-container">
-        <button onClick={() => navigate('/ok')} className="back-to-ok-button">Повернутися до ОК</button>
+        <button onClick={() => navigate('/home')} className="back-to-ok-button">
+          Повернутися до ОК
+        </button>
       </div>
     </div>
   );
