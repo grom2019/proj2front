@@ -6,14 +6,16 @@ const BrigadeDetailPage = () => {
   const { command, brigadeName } = useParams();
   const brigade = brigadesByCommand[command]?.find(b => b.name === brigadeName);
 
-  if (!brigade) {
-    return <div>Бригада не знайдена</div>;
-  }
-
+  // Викликаємо useState перед умовою
   const [jobOpenings] = useState([
     { title: 'Командир відділення', description: 'Обов\'язки: командування відділенням, виконання стратегічних завдань...', image: '/images/job1.png' },
     { title: 'Медик', description: 'Обов\'язки: надання першої медичної допомоги на полі бою...', image: '/images/job2.png' }
   ]);
+
+  // Умова для перевірки наявності бригади
+  if (!brigade) {
+    return <div>Бригада не знайдена</div>;
+  }
 
   return (
     <div className="brigade-detail-page">
