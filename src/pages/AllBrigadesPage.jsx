@@ -48,9 +48,7 @@ const AllBrigadesPage = () => {
             <div className="brigade-info">
               <h3>{brigade.name}</h3>
               <p>{brigade.description}</p>
-              <Link to={`/brigade/${brigade.command}/${brigade.name}`} className="brigade-link">
-                Перейти до детальної інформації
-              </Link>
+              <Link to={`/brigades/${brigade.command}/${encodeURIComponent(brigade.name)}`} className="brigade-link">Перейти до детальної інформації</Link>
             </div>
           </div>
         ))}
