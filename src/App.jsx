@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
@@ -9,9 +8,9 @@ import Profile from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import BrigadePage from './pages/BrigadePage';
-import './styles/App.css';
+import BrigadeDetailPage from './pages/BrigadeDetailPage';  // Сторінка для детальної інформації про бригаду
 import AllBrigadesPage from './pages/AllBrigadesPage';
+import './styles/App.css';
 
 function App() {
   return (
@@ -26,8 +25,9 @@ function App() {
             <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             {/* Оновлений маршрут для бригад */}
-            <Route path="/brigades/:brigadeId" element={<BrigadePage />} />
             <Route path="/brigades" element={<AllBrigadesPage />} />
+            {/* Додаємо маршрут для детальної інформації про бригаду */}
+            <Route path="/brigades/:command/:brigadeName" element={<BrigadeDetailPage />} />
             <Route path="/" element={<Login />} />
           </Routes>
         </main>

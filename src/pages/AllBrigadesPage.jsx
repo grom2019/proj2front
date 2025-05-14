@@ -1,7 +1,6 @@
-// src/pages/AllBrigadesPage.jsx
 import React, { useState } from 'react';
 import brigadesByCommand from '../data/brigades';
-import '../styles/AllBrigadesPage.css'; // Створимо окремий CSS для цієї сторінки
+import '../styles/AllBrigadesPage.css'; 
 import { Link } from 'react-router-dom';
 
 const AllBrigadesPage = () => {
@@ -49,8 +48,8 @@ const AllBrigadesPage = () => {
             <div className="brigade-info">
               <h3>{brigade.name}</h3>
               <p>{brigade.description}</p>
-              <Link to={`/brigade/${brigade.command}`} className="brigade-link">
-                Перейти до командування
+              <Link to={`/brigade/${brigade.command}/${brigade.name}`} className="brigade-link">
+                Перейти до детальної інформації
               </Link>
             </div>
           </div>
