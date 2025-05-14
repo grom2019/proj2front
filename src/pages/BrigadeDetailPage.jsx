@@ -1,10 +1,15 @@
+// src/pages/BrigadeDetailPage.jsx
+
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import brigadesByCommand from '../data/brigades';
 
 const BrigadeDetailPage = () => {
   const { command, brigadeName } = useParams();
-  const brigade = brigadesByCommand[command]?.find(b => b.name === decodeURIComponent(brigadeName)); // Декодуємо ім'я бригади
+  const decodedBrigadeName = decodeURIComponent(brigadeName); // Декодуємо ім'я бригади
+
+  // Перевірка, чи існує команда і чи знайдена бригада
+  const brigade = brigadesByCommand[command]?.find(b => b.name === decodedBrigadeName);
 
   const [jobOpenings] = useState([
     { title: 'Командир відділення', description: 'Обов\'язки: командування відділенням, виконання стратегічних завдань...', image: '/images/job1.png' },
