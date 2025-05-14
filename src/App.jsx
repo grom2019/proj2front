@@ -11,6 +11,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import BrigadePage from './pages/BrigadePage';
 import './styles/App.css';
+import AllBrigadesPage from './pages/AllBrigadesPage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             {/* Оновлений маршрут для бригад */}
             <Route path="/brigades/:brigadeId" element={<BrigadePage />} />
+            <Route path="/brigades" element={<AllBrigadesPage />} />
             <Route path="/" element={<Login />} />
           </Routes>
         </main>

@@ -14,6 +14,7 @@ const Navbar = () => {
         {token ? (
           <>
             <Link to="/home" className="nav-link">Головна</Link>
+            <Link to="/brigades" className="nav-link">Бригади</Link> {/* Додано посилання */}
             <LogoutButton />
           </>
         ) : (

@@ -1,0 +1,41 @@
+/* src/styles/AllBrigadesPage.css */
+
+.all-brigades-page {
+    padding: 20px;
+  }
+  
+  .brigade-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .brigade-card {
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
+    transition: transform 0.3s;
+  }
+  
+  .brigade-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .brigade-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  .brigade-info {
+    padding: 10px;
+  }
+  
+  .brigade-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
