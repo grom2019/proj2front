@@ -1,56 +1,36 @@
-// src/components/StructureSelector.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import brigadesByCommand from '../data/brigades';
 import '../styles/StructureSelector.css';
 
-const structureData = {
-  'Сухопутні війська України (СВУ)': {
-    'ОК «Схід»': [
-      '92 окрема механізована бригада імені кошового отамана Івана Сірка',
-      '93 окрема механізована бригада «Холодний Яр»',
-      '54 окрема механізована бригада',
-    ],
-  },
-  'Повітряні Сили України (ПСУ)': {
-    'Повітряне командування «Захід»': [
-      '204-та Севастопольська бригада тактичної авіації',
-      '39 зенітна ракетна бригада',
-    ],
-  },
-  'Військово-Морські Сили України (ВМСУ)': {
-    'ВМС (командування в м. Одеса)': [
-      '36 окрема бригада морської піхоти імені контрадмірала Михайла Білинського',
-      '503 окремий батальйон морської піхоти',
-    ],
-  },
+const commandLabels = {
+  'ok-skhid': 'ОК «Схід»',
+  'ok-zakhid': 'ОК «Захід»',
+  'ok-pivden': 'ОК «Південь»',
+  'ok-pivnich': 'ОК «Північ»',
+  'center': 'ОК «Центр»',
+  'zakhid': 'Повітряне командування «Захід»',
+  'pivden': 'ВМС (командування в м. Одеса)',
+  'skhid': 'Інші формування Сходу'
 };
 
 const StructureSelector = () => {
-  const [selectedBranch, setSelectedBranch] = useState('');
-  const [selectedCommand, setSelectedCommand] = useState('');
+  const [selectedCommandKey, setSelectedCommandKey] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const navigate = useNavigate();
 
-  const handleBranchChange = (e) => {
-    setSelectedBranch(e.target.value);
-    setSelectedCommand('');
-    setSelectedIndex(0);
-  };
-
   const handleCommandChange = (e) => {
-    setSelectedCommand(e.target.value);
+    setSelectedCommandKey(e.target.value);
     setSelectedIndex(0);
   };
 
   const handleChoose = () => {
-    const selectedBrigade = structureData[selectedBranch][selectedCommand][selectedIndex];
-    navigate(`/brigade/${encodeURIComponent(selectedBrigade.toLowerCase().replace(/ /g, '-'))}`); // Формуємо URL для бригади
+    if (selectedCommandKey) {
+      navigate(`/brigades/${encodeURIComponent(selectedCommandKey)}`);
+    }
   };
 
-  const brigades =
-    selectedBranch && selectedCommand
-      ? structureData[selectedBranch][selectedCommand]
-      : [];
+  const brigades = selectedCommandKey ? brigadesByCommand[selectedCommandKey] || [] : [];
 
   const nextSlide = () => {
     setSelectedIndex((prev) => (prev + 1) % brigades.length);
@@ -62,37 +42,32 @@ const StructureSelector = () => {
 
   return (
     <div className="structure-container">
-      <h2>Оберіть бригаду</h2>
+      <h2>Оберіть командування</h2>
 
       <div className="dropdowns">
-        <select value={selectedBranch} onChange={handleBranchChange}>
-          <option value="">Оберіть вид ЗСУ</option>
-          {Object.keys(structureData).map((branch) => (
-            <option key={branch} value={branch}>{branch}</option>
+        <select value={selectedCommandKey} onChange={handleCommandChange}>
+          <option value="">Оберіть ОК / командування</option>
+          {Object.entries(commandLabels).map(([key, label]) => (
+            <option key={key} value={key}>{label}</option>
           ))}
         </select>
-
-        {selectedBranch && (
-          <select value={selectedCommand} onChange={handleCommandChange}>
-            <option value="">Оберіть ОК</option>
-            {Object.keys(structureData[selectedBranch]).map((command) => (
-              <option key={command} value={command}>{command}</option>
-            ))}
-          </select>
-        )}
       </div>
 
       {brigades.length > 0 && (
         <div className="carousel">
           <button onClick={prevSlide}>⟨</button>
-          <div className="carousel-item">{brigades[selectedIndex]}</div>
+          <div className="carousel-item">
+            <img src={brigades[selectedIndex].image} alt={brigades[selectedIndex].name} />
+            <h3>{brigades[selectedIndex].name}</h3>
+            <p>{brigades[selectedIndex].description}</p>
+          </div>
           <button onClick={nextSlide}>⟩</button>
         </div>
       )}
 
       {brigades.length > 0 && (
         <button className="choose-button" onClick={handleChoose}>
-          Вибрати
+          Переглянути бригади
         </button>
       )}
     </div>

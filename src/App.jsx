@@ -10,7 +10,7 @@ import Profile from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import BrigadeDetailPage from './pages/BrigadeDetailPage';  // Сторінка для детальної інформації про бригаду
+import BrigadeCarouselPage from './pages/BrigadeCarouselPage';
 import AllBrigadesPage from './pages/AllBrigadesPage';
 import './styles/App.css';
 
@@ -27,9 +27,8 @@ function App() {
             <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/brigades" element={<AllBrigadesPage />} />
-            <Route path="/brigades/:commandId" element={<AllBrigadesPage />} />
-            <Route path="/brigades/:commandId/:brigadeName" element={<BrigadeDetailPage />} />
-            <Route path="/" element={<Login />} /> {/* За замовчуванням сторінка входу */}
+            <Route path="/brigades/:commandId" element={<BrigadeCarouselPage />} />
+            <Route path="/" element={<Login />} />
           </Routes>
         </main>
         <Footer />

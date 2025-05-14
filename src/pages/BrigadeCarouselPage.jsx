@@ -1,20 +1,18 @@
-// src/pages/BrigadePage.jsx
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import brigadesByCommand from '../data/brigades'; // ІМПОРТУЄМО ДАНІ
+import brigadesByCommand from '../data/brigades';
 import '../styles/BrigadeCarousel.css';
 
-const BrigadePage = () => {
-  const { brigadeId } = useParams(); // Наприклад: ok-skhid
+const BrigadeCarouselPage = () => {
+  const { commandId } = useParams(); // отримаємо id командування (наприклад, ok-skhid)
   const navigate = useNavigate();
 
-  const brigades = brigadesByCommand[brigadeId] || [];
+  const brigades = brigadesByCommand[commandId] || [];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     setCurrentIndex(0);
-  }, [brigadeId]);
+  }, [commandId]);
 
   const scroll = (direction) => {
     setCurrentIndex((prevIndex) => {
@@ -67,4 +65,4 @@ const BrigadePage = () => {
   );
 };
 
-export default BrigadePage;
+export default BrigadeCarouselPage;
