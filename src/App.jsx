@@ -26,11 +26,10 @@ function App() {
             <Route path="/verify-email" element={<VerifyEmail />} />
             <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-            {/* Оновлений маршрут для бригад */}
             <Route path="/brigades" element={<AllBrigadesPage />} />
-            {/* Додаємо маршрут для детальної інформації про бригаду */}
-            <Route path="/brigades/:command/:brigadeName" element={<BrigadeDetailPage />} />
-            <Route path="/" element={<Login />} />
+            <Route path="/brigades/:commandId" element={<AllBrigadesPage />} />
+            <Route path="/brigades/:commandId/:brigadeName" element={<BrigadeDetailPage />} />
+            <Route path="/" element={<Login />} /> {/* За замовчуванням сторінка входу */}
           </Routes>
         </main>
         <Footer />
