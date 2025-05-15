@@ -1,21 +1,31 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import brigadesByCommand from '../data/brigades';
 import '../styles/BrigadeDetailPage.css';
 
 const BrigadeDetailPage = () => {
   const { commandId, brigadeName } = useParams();
   const decodedBrigadeName = decodeURIComponent(brigadeName);
+  const navigate = useNavigate();
 
   const brigade = brigadesByCommand[commandId]?.find(b => b.name === decodedBrigadeName);
-  const [expandedIndex, setExpandedIndex] = useState(null);
+  const [expandedSection, setExpandedSection] = useState(null);
 
   if (!brigade) {
     return <div>Бригада не знайдена</div>;
   }
 
-  const toggleVacancyDetails = (index) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
+  const toggleSection = (index, section) => {
+    // Якщо клікнули по тій же секції - закриваємо її
+    if (expandedSection && expandedSection.index === index && expandedSection.section === section) {
+      setExpandedSection(null);
+    } else {
+      setExpandedSection({ index, section });
+    }
+  };
+
+  const handleApplyClick = (vacancy) => {
+    navigate(`/apply/${commandId}/${encodeURIComponent(brigade.name)}/${encodeURIComponent(vacancy.title)}`);
   };
 
   return (
@@ -31,20 +41,44 @@ const BrigadeDetailPage = () => {
           <h3>Вільні посади</h3>
           {brigade.vacancies.map((vacancy, index) => (
             <div key={index} className="vacancy-card">
-              <div className="vacancy-header" onClick={() => toggleVacancyDetails(index)}>
+              <div className="vacancy-main-info">
                 <img src={vacancy.image} alt={vacancy.title} className="vacancy-image" />
-                <div className="vacancy-title">
+                <div className="vacancy-summary">
                   <h4>{vacancy.title}</h4>
+                  <p className="vacancy-short-description">{vacancy.description}</p>
+                  <div className="vacancy-links">
+                    {['duties', 'requirements', 'qualifications', 'knowledge'].map((sectionKey) => {
+                      const sectionTitle = {
+                        duties: "Обов’язки",
+                        requirements: "Необхідні якості",
+                        qualifications: "Кваліфікація",
+                        knowledge: "Знання",
+                      }[sectionKey];
+                      return (
+                        <button
+                          key={sectionKey}
+                          className="vacancy-link"
+                          onClick={() => toggleSection(index, sectionKey)}
+                        >
+                          {sectionTitle}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <button className="apply-button" onClick={() => handleApplyClick(vacancy)}>Подати заявку</button>
                 </div>
-                <button className="apply-button">Подати заявку</button>
               </div>
-              {expandedIndex === index && (
-                <div className="vacancy-details">
-                  <VacancyDetail title="Обов’язки" items={vacancy.duties} />
-                  <VacancyDetail title="Необхідні якості" items={vacancy.requirements} />
-                  <VacancyDetail title="Кваліфікація" items={vacancy.qualifications} />
-                  <VacancyDetail title="Знання" items={vacancy.knowledge} />
-                </div>
+
+              {expandedSection && expandedSection.index === index && expandedSection.section && (
+                <VacancyDetail
+                  title={{
+                    duties: "Обов’язки",
+                    requirements: "Необхідні якості",
+                    qualifications: "Кваліфікація",
+                    knowledge: "Знання",
+                  }[expandedSection.section]}
+                  items={vacancy[expandedSection.section]}
+                />
               )}
             </div>
           ))}
