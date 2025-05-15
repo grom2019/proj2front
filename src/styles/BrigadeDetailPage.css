@@ -1,110 +1,121 @@
-/* Стилі для сторінки детальної інформації про бригаду */
 .brigade-detail-page {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 10px;
-    max-width: 1200px;
-    margin: 20px auto;
-  }
-  
-  .brigade-header {
-    text-align: center;
-  }
-  
-  .brigade-header h2 {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 15px;
-  }
-  
-  .brigade-header .brigade-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .brigade-info {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .brigade-info h3 {
-    font-size: 1.8rem;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .brigade-info p {
-    font-size: 1rem;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 10px;
-  }
-  
-  .job-list {
-    margin-top: 40px;
-  }
-  
-  .job-list h3 {
-    font-size: 1.8rem;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .job-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .job-image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-right: 20px;
-  }
-  
-  .job-info h4 {
-    font-size: 1.3rem;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .job-info p {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 10px;
-  }
-  
-  .apply-btn {
-    padding: 10px 15px;
-    background-color: #4CAF50;
-    color: white;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .apply-btn:hover {
-    background-color: #45a049;
-  }
-  
-  .brigade-not-found {
-    font-size: 1.5rem;
-    text-align: center;
-    color: red;
-    margin-top: 50px;
-  }
-  
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.brigade-detail-page h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.brigade-detail-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.brigade-detail-page p {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.6;
+  margin-top: 15px;
+}
+
+/* Вакансії */
+.vacancy-section {
+  margin-top: 40px;
+}
+
+.vacancy-section h3 {
+  font-size: 1.8rem;
+  color: #222;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.vacancy-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.vacancy-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+}
+
+.vacancy-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.vacancy-title h4 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.apply-button {
+  margin-left: auto;
+  padding: 10px 15px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.apply-button:hover {
+  background-color: #0056b3;
+}
+
+.vacancy-details {
+  margin-top: 20px;
+  padding-left: 10px;
+  border-left: 3px solid #007BFF;
+}
+
+.vacancy-section-detail {
+  margin-bottom: 15px;
+}
+
+.vacancy-section-detail h5 {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.vacancy-section-detail ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.vacancy-section-detail li {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.brigade-not-found {
+  font-size: 1.5rem;
+  text-align: center;
+  color: red;
+  margin-top: 50px;
+}

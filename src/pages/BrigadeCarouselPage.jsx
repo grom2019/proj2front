@@ -41,19 +41,20 @@ const BrigadeCarouselPage = () => {
       <div className="carousel-wrapper">
         <button onClick={() => scroll('left')} className="carousel-button left">◀</button>
         <div className="carousel-track">
-          <div className="brigade-card active-brigade">
-            <Link to={`/brigades/${commandId}/${encodeURIComponent(currentBrigade.name)}`}>
-              <img
-                src={currentBrigade.image}
-                alt={currentBrigade.name}
-                className="brigade-image"
-              />
-            </Link>
+          <Link
+            to={`/brigades/${commandId}/${encodeURIComponent(currentBrigade.name)}`}
+            className="brigade-card active-brigade"
+          >
+            <img
+              src={currentBrigade.image}
+              alt={currentBrigade.name}
+              className="brigade-image"
+            />
             <div className="brigade-text">
               <h3>{currentBrigade.name}</h3>
               <p>{currentBrigade.description}</p>
             </div>
-          </div>
+          </Link>
         </div>
         <button onClick={() => scroll('right')} className="carousel-button right">▶</button>
       </div>

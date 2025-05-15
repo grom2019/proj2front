@@ -43,18 +43,17 @@ const AllBrigadesPage = () => {
       </div>
       <div className="brigade-list">
         {allBrigades.map((brigade, index) => (
-          <div key={index} className="brigade-card">
-            <Link to={`/brigades/${brigade.command}/${encodeURIComponent(brigade.name)}`}>
-              <img src={brigade.image} alt={brigade.name} className="brigade-image" />
-            </Link>
+          <Link
+            key={index}
+            to={`/brigades/${brigade.command}/${encodeURIComponent(brigade.name)}`}
+            className="brigade-card"
+          >
+            <img src={brigade.image} alt={brigade.name} className="brigade-image" />
             <div className="brigade-info">
               <h3>{brigade.name}</h3>
               <p>{brigade.description}</p>
-              <Link to={`/brigades/${brigade.command}/${encodeURIComponent(brigade.name)}`} className="brigade-link">
-                Перейти до детальної інформації
-              </Link>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
