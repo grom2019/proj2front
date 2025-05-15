@@ -12,6 +12,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import BrigadeCarouselPage from './pages/BrigadeCarouselPage';
 import AllBrigadesPage from './pages/AllBrigadesPage';
+import BrigadeDetailPage from './pages/BrigadeDetailPage';
 import './styles/App.css';
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/brigades" element={<AllBrigadesPage />} />
             <Route path="/brigades/:commandId" element={<BrigadeCarouselPage />} />
+            <Route path="/brigades/:commandId/:brigadeName" element={<BrigadeDetailPage />} />
+
             <Route path="/" element={<Login />} />
           </Routes>
         </main>
