@@ -44,7 +44,9 @@ const AllBrigadesPage = () => {
       <div className="brigade-list">
         {allBrigades.map((brigade, index) => (
           <div key={index} className="brigade-card">
-            <img src={brigade.image} alt={brigade.name} className="brigade-image" />
+            <Link to={`/brigades/${brigade.command}/${encodeURIComponent(brigade.name)}`}>
+              <img src={brigade.image} alt={brigade.name} className="brigade-image" />
+            </Link>
             <div className="brigade-info">
               <h3>{brigade.name}</h3>
               <p>{brigade.description}</p>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import brigadesByCommand from '../data/brigades';
 import '../styles/BrigadeCarousel.css';
 
 const BrigadeCarouselPage = () => {
-  const { commandId } = useParams(); // отримаємо id командування (наприклад, ok-skhid)
+  const { commandId } = useParams();
   const navigate = useNavigate();
 
   const brigades = brigadesByCommand[commandId] || [];
@@ -42,11 +42,13 @@ const BrigadeCarouselPage = () => {
         <button onClick={() => scroll('left')} className="carousel-button left">◀</button>
         <div className="carousel-track">
           <div className="brigade-card active-brigade">
-            <img
-              src={currentBrigade.image}
-              alt={currentBrigade.name}
-              className="brigade-image"
-            />
+            <Link to={`/brigades/${commandId}/${encodeURIComponent(currentBrigade.name)}`}>
+              <img
+                src={currentBrigade.image}
+                alt={currentBrigade.name}
+                className="brigade-image"
+              />
+            </Link>
             <div className="brigade-text">
               <h3>{currentBrigade.name}</h3>
               <p>{currentBrigade.description}</p>
