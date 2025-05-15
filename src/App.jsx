@@ -13,6 +13,8 @@ import Footer from './components/Footer';
 import BrigadeCarouselPage from './pages/BrigadeCarouselPage';
 import AllBrigadesPage from './pages/AllBrigadesPage';
 import BrigadeDetailPage from './pages/BrigadeDetailPage';
+import ApplyPage from './pages/ApplyPage';
+
 import './styles/App.css';
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
             <Route path="/brigades" element={<AllBrigadesPage />} />
             <Route path="/brigades/:commandId" element={<BrigadeCarouselPage />} />
             <Route path="/brigades/:commandId/:brigadeName" element={<BrigadeDetailPage />} />
+            <Route path="/apply/:commandId/:brigadeName/:vacancyTitle" element={<ApplyPage />} />
+
 
             <Route path="/" element={<Login />} />
           </Routes>
