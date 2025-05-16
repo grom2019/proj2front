@@ -6,44 +6,40 @@ const Home = () => {
   const [activeBranch, setActiveBranch] = useState(null);
   const navigate = useNavigate();
 
-  const emblem =
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_the_Ukrainian_Armed_Forces.svg/250px-Emblem_of_the_Ukrainian_Armed_Forces.svg.png";
-
   const branches = [
     {
       name: "Сухопутні війська",
-      image: emblem,
+      image: "/images/Suhoputni.png",
       commands: [
-        { name: "ОК 'Схід'", id: "ok-skhid" },
-        { name: "ОК 'Захід'", id: "ok-zakhid" },
-        { name: "ОК 'Південь'", id: "ok-pivden" },
-        { name: "ОК 'Північ'", id: "ok-pivnich" },
+        { name: "ОК 'Схід'", id: "ok-skhid", image: "/images/ok/skhid.png" },
+        { name: "ОК 'Захід'", id: "ok-zakhid", image: "/images/ok/zakhid.png" },
+        { name: "ОК 'Південь'", id: "ok-pivden", image: "/images/ok/pivden.png" },
+        { name: "ОК 'Північ'", id: "ok-pivnich", image: "/images/ok/pivnich.png" },
       ],
     },
     {
       name: "Повітряні сили",
-      image: emblem,
+      image: "/images/povitryani.png",
       commands: [
-        { name: "Центр", id: "center" },
-        { name: "Захід", id: "zakhid" },
-        { name: "Південь", id: "pivden" },
-        { name: "Схід", id: "skhid" },
+        { name: "Центр", id: "center", image: "/images/center.png" },
+        { name: "Захід", id: "zakhid", image: "/images/air-zakhid.png" },
+        { name: "Південь", id: "pivden", image: "/images/air-pivden.png" },
+        { name: "Схід", id: "skhid", image: "/images/air-skhid.png" },
       ],
     },
     {
       name: "Військово-морські сили",
-      image: emblem,
+      image: "/images/morsky.png",
       commands: [
-        { name: "Командування ВМС", id: "vms" },
-        { name: "Морська піхота", id: "mp" },
-        { name: "Флот", id: "flot" },
-        { name: "Берегова охорона", id: "bo" },
+        { name: "Командування ВМС", id: "vms", image: "/images/vms.png" },
+        { name: "Морська піхота", id: "mp", image: "/images/mp.png" },
+        { name: "Флот", id: "flot", image: "/images/flot.png" },
+        { name: "Берегова охорона", id: "bo", image: "/images/bo.png" },
       ],
     },
   ];
 
   const handleCommandClick = (commandId) => {
-    // Перехід на сторінку бригад із передачею id команди
     navigate(`/brigades/${commandId}`);
   };
 
@@ -88,5 +84,5 @@ const Home = () => {
     </div>
   );
 };
-//
+
 export default Home;

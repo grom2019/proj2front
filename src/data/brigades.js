@@ -3,7 +3,7 @@ const brigadesByCommand = {
     {
       name: '92 ОМБр',
       description: 'Одна з провідних бригад Сходу.',
-      image: '/images/brigade1.png',
+      image: '/images/92.png',
       type: 'сухопутні',
       category: 'механізована',
       vacancies: [
@@ -28,7 +28,7 @@ const brigadesByCommand = {
     {
       name: '54 ОМБр',
       description: 'Ударна механізована бригада.',
-      image: '/images/brigade2.png',
+      image: '/images/54.png',
       type: 'сухопутні',
       category: 'механізована',
       vacancies: [
@@ -47,7 +47,7 @@ const brigadesByCommand = {
     {
       name: '93 ОМБр',
       description: 'Героїчна бригада "Холодний Яр".',
-      image: '/images/brigade4.png',
+      image: '/images/93.png',
       type: 'сухопутні',
       category: 'механізована',
       vacancies: [
@@ -83,7 +83,7 @@ const brigadesByCommand = {
     {
       name: '36 МПБр',
       description: 'Морська піхота південного напряму.',
-      image: '/images/brigade7.png',
+      image: '/images/36.png',
       type: 'морські',
       category: 'механізована',
       vacancies: [
