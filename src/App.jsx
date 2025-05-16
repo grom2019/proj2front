@@ -1,5 +1,3 @@
-// src/App.jsx
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
@@ -21,8 +19,14 @@ function App() {
   return (
     <Router>
       <div className="app-container">
+        {/* Відео-фон */}
+        <video autoPlay loop muted className="video-background">
+          <source src="/images/background.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
         <Navbar />
-        <main>
+        <main className="main-content">
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
@@ -33,8 +37,6 @@ function App() {
             <Route path="/brigades/:commandId" element={<BrigadeCarouselPage />} />
             <Route path="/brigades/:commandId/:brigadeName" element={<BrigadeDetailPage />} />
             <Route path="/apply/:commandId/:brigadeName/:vacancyTitle" element={<ApplyPage />} />
-
-
             <Route path="/" element={<Login />} />
           </Routes>
         </main>
