@@ -19,7 +19,7 @@
   backdrop-filter: blur(8px); /* ефект розмиття фону */
   -webkit-backdrop-filter: blur(8px);
   transition: box-shadow 0.3s ease;
-  opacity: 0.5;
+  opacity: 0.2;
 }
 
 .login-box:hover {
