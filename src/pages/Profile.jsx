@@ -106,6 +106,7 @@ function Profile() {
 
   return (
     <div className="profile-container">
+      <div className="profile-content-box">
       <div className="avatar-container">
         <img
           src={userData.avatar_url || 'https://litmir.club/data/Author/273000/273657/%D0%A4%D0%BE%D1%82%D0%BE_%D0%9B%D0%B0%D0%BA%D0%B8_%D0%90%D0%BD%D0%BE%D0%BD%D0%B8%D0%BC_08c2c.jpg'}
@@ -180,6 +181,7 @@ function Profile() {
           <p><strong>ВОС:</strong> {userData.mos}</p>
         </>
       )}
+      </div>
     </div>
   );
 }
