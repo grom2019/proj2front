@@ -1,31 +1,24 @@
+/* src/styles/App.css */
 html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .page-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .content-wrap {
-    flex: 1;
-  }
-  /* === App.css === */
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-/* Layout для sticky footer */
 .app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   background-color: #2e2e2e;
+  position: relative;
+  z-index: 0; /* щоб контент був поверх відео */
 }
 
 .main-content {
   flex: 1;
   padding: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 /* Footer */
@@ -35,11 +28,14 @@ footer {
   text-align: center;
   padding: 10px 0;
   font-size: 0.9rem;
+  position: relative;
+  z-index: 1;
 }
+
+/* Приховує горизонтальний скролбар */
 body {
   overflow-x: hidden;
 }
-/* Приховує горизонтальний скролбар */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -47,14 +43,16 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Відео на фоні */
 .video-background {
   position: fixed;
   top: 0;
   left: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1;
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
-  opacity: 0.3; /* Прозорість — змінюй за бажанням */
-  pointer-events: none; /* Щоб не заважало клікам */
+  z-index: -1; /* під контентом */
+  opacity: 0.3; /* прозорість, можна регулювати */
+  pointer-events: none; /* щоб кліки проходили крізь відео */
 }
