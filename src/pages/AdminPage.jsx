@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './AdminPage.css';
 
 const AdminPage = () => {
   const [users, setUsers] = useState([]);
@@ -35,19 +36,14 @@ const AdminPage = () => {
     fetchUsers();
   }, []);
 
-  if (loading) return <div>Завантаження користувачів...</div>;
+  if (loading) return <div className="loading">Завантаження користувачів...</div>;
 
-  if (error) return <div style={{ color: 'red' }}>{error}</div>;
+  if (error) return <div className="error">{error}</div>;
 
   return (
-    <div>
+    <div className="admin-container">
       <h1>Адмін: список користувачів</h1>
-      <table
-        border="1"
-        cellPadding="5"
-        cellSpacing="0"
-        style={{ borderCollapse: 'collapse', width: '100%', maxWidth: 600 }}
-      >
+      <table className="admin-table">
         <thead>
           <tr>
             <th>Ім'я користувача</th>
@@ -66,7 +62,7 @@ const AdminPage = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="3" style={{ textAlign: 'center' }}>
+              <td colSpan="3" className="no-users">
                 Користувачів не знайдено
               </td>
             </tr>

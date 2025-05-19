@@ -1,0 +1,80 @@
+/* AdminPage.css */
+
+.admin-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #1f2937; /* темний фон */
+    color: #facc15; /* жовтий акцент */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .admin-container h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 700;
+    font-size: 2rem;
+  }
+  
+  .admin-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px; /* вертикальні відступи між рядками */
+    background: #111827;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .admin-table th,
+  .admin-table td {
+    padding: 12px 20px;
+    text-align: left;
+  }
+  
+  .admin-table thead th {
+    background-color: #facc15;
+    color: #1f2937;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+  }
+  
+  .admin-table tbody tr {
+    background-color: #374151;
+    transition: background-color 0.3s ease;
+    border-radius: 6px;
+  }
+  
+  .admin-table tbody tr:hover {
+    background-color: #f59e0b;
+    color: #111827;
+    cursor: pointer;
+  }
+  
+  .admin-table tbody td {
+    border-bottom: none;
+  }
+  
+  .no-users {
+    text-align: center;
+    padding: 20px;
+    color: #fbbf24;
+    font-style: italic;
+  }
+  
+  .loading,
+  .error {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+  
+  .error {
+    color: #f87171;
+  }
+  
