@@ -1,4 +1,3 @@
-// src/pages/AdminPage.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -12,7 +11,10 @@ const AdminPage = () => {
       try {
         setLoading(true);
         setError('');
-        const res = await axios.get('/api/auth/users'); // URL бекенду
+        const token = localStorage.getItem('token'); // або отримай з Auth Context
+        const res = await axios.get('/api/auth/users', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setUsers(res.data);
       } catch (err) {
         console.error('Помилка отримання користувачів:', err);
@@ -32,13 +34,24 @@ const AdminPage = () => {
   return (
     <div>
       <h1>Адмін: список користувачів</h1>
-      <ul>
-        {users.map(user => (
-          <li key={user.id}>
-            {user.username} ({user.email}) — роль: {user.role}
-          </li>
-        ))}
-      </ul>
+      <table border="1" cellPadding="5" cellSpacing="0">
+        <thead>
+          <tr>
+            <th>Ім'я користувача</th>
+            <th>Email</th>
+            <th>Роль</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map(user => (
+            <tr key={user.id}>
+              <td>{user.username}</td>
+              <td>{user.email}</td>
+              <td>{user.role}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
