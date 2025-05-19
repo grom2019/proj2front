@@ -77,4 +77,87 @@
   .error {
     color: #f87171;
   }
+  .admin-container {
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .admin-flex-container {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .admin-list {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .admin-list-ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .admin-list-item {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .admin-list-item:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .admin-list-item.selected {
+    background-color: #f0f0f0;
+    font-weight: 600;
+  }
+  
+  .admin-application-details {
+    margin-top: 2rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fafafa;
+    max-width: 900px;
+  }
+  
+  .admin-close-btn {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border: none;
+    background-color: #facc15;
+    color: #222;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .admin-close-btn:hover {
+    background-color: #e6b70a;
+  }
+  
+  .loading {
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  .error {
+    color: red;
+    font-weight: 600;
+  }
+  
+  .no-users {
+    text-align: center;
+    color: #999;
+  }
   
