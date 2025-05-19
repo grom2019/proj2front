@@ -23,7 +23,6 @@ const AdminPage = () => {
 
         const baseURL = process.env.REACT_APP_BASE_URL || '';
 
-        // Паралельні запити з токеном в заголовку
         const [appsRes, usersRes] = await Promise.all([
           axios.get(`${baseURL}/api/applications`, {
             headers: { Authorization: `Bearer ${token}` },
@@ -53,63 +52,118 @@ const AdminPage = () => {
     <div className="admin-container">
       <h1>Адмін: Панель управління</h1>
 
-      <div className="admin-flex-container">
-        <div className="admin-list">
-          <h2>Заявки</h2>
-          {applications.length === 0 ? (
-            <p>Заявок немає.</p>
-          ) : (
-            <ul className="admin-list-ul">
-              {applications.map((app) => (
-                <li
-                  key={app.id}
-                  className={`admin-list-item ${
-                    selectedApplication?.id === app.id ? 'selected' : ''
-                  }`}
-                  onClick={() => setSelectedApplication(app)}
-                >
-                  {app.first_name && app.last_name
-                    ? `${app.first_name} ${app.last_name} — ${app.vacancy_title || 'Вакансія'}`
-                    : `Заявка #${app.id}`}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-
-        <div className="admin-list">
-          <h2>Користувачі</h2>
+      <div className="admin-tables-container">
+        {/* Таблиця користувачів */}
+        <section className="admin-table-section">
+          <h2>Список користувачів</h2>
           {users.length === 0 ? (
             <p>Користувачів немає.</p>
           ) : (
-            <ul className="admin-list-ul">
-              {users.map((user) => (
-                <li key={user.id} className="admin-list-item">
-                  {user.username} ({user.role})
-                </li>
-              ))}
-            </ul>
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Ім'я користувача</th>
+                  <th>Email</th>
+                  <th>Роль</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map(user => (
+                  <tr key={user.id}>
+                    <td>{user.id}</td>
+                    <td>{user.username}</td>
+                    <td>{user.email}</td>
+                    <td>{user.role}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           )}
-        </div>
+        </section>
+
+        {/* Таблиця заявок */}
+        <section className="admin-table-section">
+          <h2>Список заявок</h2>
+          {applications.length === 0 ? (
+            <p>Заявок немає.</p>
+          ) : (
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Ім'я</th>
+                  <th>Прізвище</th>
+                  <th>Вакансія</th>
+                </tr>
+              </thead>
+              <tbody>
+                {applications.map(app => (
+                  <tr
+                    key={app.id}
+                    className={selectedApplication?.id === app.id ? 'selected-row' : ''}
+                    onClick={() => setSelectedApplication(app)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <td>{app.id}</td>
+                    <td>{app.first_name}</td>
+                    <td>{app.last_name}</td>
+                    <td>{app.vacancy_title || 'Вакансія'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </section>
       </div>
 
+      {/* Деталі вибраної заявки */}
       {selectedApplication && (
         <div className="admin-application-details">
           <h2>Деталі заявки #{selectedApplication.id}</h2>
-          <p><strong>Ім'я:</strong> {selectedApplication.first_name} {selectedApplication.last_name} {selectedApplication.patronymic || ''}</p>
-          <p><strong>Дата народження:</strong> {selectedApplication.birth_date}</p>
-          <p><strong>Військова частина:</strong> {selectedApplication.military_unit}</p>
-          <p><strong>Звання:</strong> {selectedApplication.rank}</p>
-          <p><strong>Посада:</strong> {selectedApplication.position}</p>
-          <p><strong>MOS:</strong> {selectedApplication.mos}</p>
-          <p><strong>Email:</strong> {selectedApplication.email}</p>
-          <p><strong>Телефон:</strong> {selectedApplication.phone}</p>
-          <p><strong>Коментар:</strong> {selectedApplication.comment || '-'}</p>
-          <p><strong>Погодження:</strong> {selectedApplication.agreement ? 'Так' : 'Ні'}</p>
-          <p><strong>Командування:</strong> {selectedApplication.command_id}</p>
-          <p><strong>Бригада:</strong> {selectedApplication.brigade_name}</p>
-          <p><strong>Вакансія:</strong> {selectedApplication.vacancy_title}</p>
-          <p><strong>Документи:</strong></p>
+          <p>
+            <strong>Ім'я:</strong> {selectedApplication.first_name} {selectedApplication.last_name}{' '}
+            {selectedApplication.patronymic || ''}
+          </p>
+          <p>
+            <strong>Дата народження:</strong> {selectedApplication.birth_date}
+          </p>
+          <p>
+            <strong>Військова частина:</strong> {selectedApplication.military_unit}
+          </p>
+          <p>
+            <strong>Звання:</strong> {selectedApplication.rank}
+          </p>
+          <p>
+            <strong>Посада:</strong> {selectedApplication.position}
+          </p>
+          <p>
+            <strong>MOS:</strong> {selectedApplication.mos}
+          </p>
+          <p>
+            <strong>Email:</strong> {selectedApplication.email}
+          </p>
+          <p>
+            <strong>Телефон:</strong> {selectedApplication.phone}
+          </p>
+          <p>
+            <strong>Коментар:</strong> {selectedApplication.comment || '-'}
+          </p>
+          <p>
+            <strong>Погодження:</strong> {selectedApplication.agreement ? 'Так' : 'Ні'}
+          </p>
+          <p>
+            <strong>Командування:</strong> {selectedApplication.command_id}
+          </p>
+          <p>
+            <strong>Бригада:</strong> {selectedApplication.brigade_name}
+          </p>
+          <p>
+            <strong>Вакансія:</strong> {selectedApplication.vacancy_title}
+          </p>
+          <p>
+            <strong>Документи:</strong>
+          </p>
           {selectedApplication.documents && selectedApplication.documents.length > 0 ? (
             <ul>
               {selectedApplication.documents.map((doc, i) => (
