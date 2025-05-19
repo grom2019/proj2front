@@ -14,6 +14,7 @@ const ApplyPage = () => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
 
   const [formData, setFormData] = useState({
     first_name: '',
@@ -31,8 +32,6 @@ const ApplyPage = () => {
     documents: null,
   });
 
-  const [submitted, setSubmitted] = useState(false);
-
   useEffect(() => {
     if (!token) {
       navigate('/login');
@@ -46,7 +45,6 @@ const ApplyPage = () => {
         });
         const profile = res.data;
 
-        // Форматування дати народження для input[type=date]
         let formattedBirthDate = '';
         if (profile.birth_date) {
           formattedBirthDate = profile.birth_date.split('T')[0];
@@ -85,15 +83,15 @@ const ApplyPage = () => {
     const { name, value, type, checked, files } = e.target;
 
     if (type === 'checkbox') {
-      setFormData(prev => ({ ...prev, [name]: checked }));
+      setFormData((prev) => ({ ...prev, [name]: checked }));
     } else if (type === 'file') {
-      setFormData(prev => ({ ...prev, [name]: files }));
+      setFormData((prev) => ({ ...prev, [name]: files }));
     } else {
-      setFormData(prev => ({ ...prev, [name]: value }));
+      setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!formData.first_name || !formData.last_name || !formData.email || !formData.agreement) {
@@ -101,9 +99,42 @@ const ApplyPage = () => {
       return;
     }
 
-    // Тут можна додати логіку відправки заявки на сервер з formData
+    try {
+      const data = new FormData();
+      data.append('first_name', formData.first_name);
+      data.append('last_name', formData.last_name);
+      data.append('patronymic', formData.patronymic);
+      data.append('birth_date', formData.birth_date);
+      data.append('military_unit', formData.military_unit);
+      data.append('rank', formData.rank);
+      data.append('position', formData.position);
+      data.append('mos', formData.mos);
+      data.append('email', formData.email);
+      data.append('phone', formData.phone);
+      data.append('comment', formData.comment);
+      data.append('agreement', formData.agreement);
+      data.append('command_id', commandId);
+      data.append('brigade_name', decodedBrigadeName);
+      data.append('vacancy_title', decodedVacancyTitle);
 
-    setSubmitted(true);
+      if (formData.documents && formData.documents.length > 0) {
+        for (let i = 0; i < formData.documents.length; i++) {
+          data.append('documents', formData.documents[i]);
+        }
+      }
+
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/api/applications`, data, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error('❌ Помилка відправки заявки:', err);
+      alert('Помилка при надсиланні заявки. Спробуйте пізніше.');
+    }
   };
 
   const handleBack = () => {
@@ -130,137 +161,56 @@ const ApplyPage = () => {
       <p>Бригада: <strong>{decodedBrigadeName}</strong></p>
 
       <form onSubmit={handleSubmit} className="apply-form" encType="multipart/form-data">
-        <label>
-          Ім’я:* 
-          <input
-            type="text"
-            name="first_name"
-            value={formData.first_name}
-            onChange={handleChange}
-            required
-          />
+        <label>Ім’я:* 
+          <input type="text" name="first_name" value={formData.first_name} onChange={handleChange} required />
         </label>
 
-        <label>
-          Прізвище:* 
-          <input
-            type="text"
-            name="last_name"
-            value={formData.last_name}
-            onChange={handleChange}
-            required
-          />
+        <label>Прізвище:* 
+          <input type="text" name="last_name" value={formData.last_name} onChange={handleChange} required />
         </label>
 
-        <label>
-          По батькові:
-          <input
-            type="text"
-            name="patronymic"
-            value={formData.patronymic}
-            onChange={handleChange}
-          />
+        <label>По батькові:
+          <input type="text" name="patronymic" value={formData.patronymic} onChange={handleChange} />
         </label>
 
-        <label>
-          Дата народження:
-          <input
-            type="date"
-            name="birth_date"
-            value={formData.birth_date}
-            onChange={handleChange}
-          />
+        <label>Дата народження:
+          <input type="date" name="birth_date" value={formData.birth_date} onChange={handleChange} />
         </label>
 
-        <label>
-          Військова частина:
-          <input
-            type="text"
-            name="military_unit"
-            value={formData.military_unit}
-            onChange={handleChange}
-          />
+        <label>Військова частина:
+          <input type="text" name="military_unit" value={formData.military_unit} onChange={handleChange} />
         </label>
 
-        <label>
-          Звання:
-          <input
-            type="text"
-            name="rank"
-            value={formData.rank}
-            onChange={handleChange}
-          />
+        <label>Звання:
+          <input type="text" name="rank" value={formData.rank} onChange={handleChange} />
         </label>
 
-        <label>
-          Посада:
-          <input
-            type="text"
-            name="position"
-            value={formData.position}
-            onChange={handleChange}
-          />
+        <label>Посада:
+          <input type="text" name="position" value={formData.position} onChange={handleChange} />
         </label>
 
-        <label>
-          ВОС:
-          <input
-            type="text"
-            name="mos"
-            value={formData.mos}
-            onChange={handleChange}
-          />
+        <label>ВОС:
+          <input type="text" name="mos" value={formData.mos} onChange={handleChange} />
         </label>
 
-        <label>
-          Email:* 
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+        <label>Email:* 
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
         </label>
 
-        <label>
-          Телефон:
-          <input
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-          />
+        <label>Телефон:
+          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} />
         </label>
 
-        <label>
-          Коментар:
-          <textarea
-            name="comment"
-            value={formData.comment}
-            onChange={handleChange}
-          />
+        <label>Коментар:
+          <textarea name="comment" value={formData.comment} onChange={handleChange} />
         </label>
 
-        <label>
-          Додаткові документи (pdf, doc, jpg): 
-          <input
-            type="file"
-            name="documents"
-            onChange={handleChange}
-            multiple
-            accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-          />
+        <label>Додаткові документи (pdf, doc, jpg): 
+          <input type="file" name="documents" onChange={handleChange} multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" />
         </label>
 
         <label className="agreement-label">
-          <input
-            type="checkbox"
-            name="agreement"
-            checked={formData.agreement}
-            onChange={handleChange}
-            required
-          />
+          <input type="checkbox" name="agreement" checked={formData.agreement} onChange={handleChange} required />
           Я даю згоду на обробку персональних даних*
         </label>
 
