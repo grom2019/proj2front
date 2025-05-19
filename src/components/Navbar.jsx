@@ -1,12 +1,11 @@
-// src/components/Navbar.jsx
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import LogoutButton from './LogoutButton';
-import '../styles/Navbar.css'; // Імпорт стилів
+import '../styles/Navbar.css';
 
 const Navbar = () => {
-  const { token } = useContext(AuthContext);
+  const { token, user } = useContext(AuthContext);
 
   return (
     <header className="navbar">
@@ -14,7 +13,10 @@ const Navbar = () => {
         {token ? (
           <>
             <Link to="/home" className="nav-link">Головна</Link>
-            <Link to="/brigades" className="nav-link">Бригади</Link> {/* Додано посилання */}
+            <Link to="/brigades" className="nav-link">Бригади</Link>
+            {user?.role === 'admin' && (
+              <Link to="/admin" className="nav-link">Адмін</Link>
+            )}
             <LogoutButton />
           </>
         ) : (

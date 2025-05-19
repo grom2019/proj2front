@@ -13,6 +13,8 @@ import BrigadeCarouselPage from './pages/BrigadeCarouselPage';
 import AllBrigadesPage from './pages/AllBrigadesPage';
 import BrigadeDetailPage from './pages/BrigadeDetailPage';
 import ApplyPage from './pages/ApplyPage';
+import AdminPage from './pages/AdminPage';
+import AdminRoute from './components/AdminRoute';
 
 import './styles/App.css';
 
@@ -38,6 +40,7 @@ function App() {
             <Route path="/brigades/:commandId" element={<BrigadeCarouselPage />} />
             <Route path="/brigades/:commandId/:brigadeName" element={<BrigadeDetailPage />} />
             <Route path="/apply/:commandId/:brigadeName/:vacancyTitle" element={<ApplyPage />} />
+            <Route path="/admin" element={<AdminRoute><AdminPage /></AdminRoute>} />
             <Route path="/" element={<Login />} />
           </Routes>
         </main>

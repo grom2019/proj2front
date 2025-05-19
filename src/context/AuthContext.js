@@ -1,39 +1,40 @@
 import React, { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [token, setToken] = useState(localStorage.getItem('token') || '');
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const handleStorage = () => {
-      const storedToken = localStorage.getItem('token');
-      setToken(storedToken);
-    };
+    if (token) {
+      localStorage.setItem('token', token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      fetchUserProfile();
+    } else {
+      localStorage.removeItem('token');
+      delete axios.defaults.headers.common['Authorization'];
+      setUser(null);
+    }
+  }, [token]);
 
-    window.addEventListener('storage', handleStorage);
-    window.addEventListener('focus', handleStorage);
-
-    return () => {
-      window.removeEventListener('storage', handleStorage);
-      window.removeEventListener('focus', handleStorage);
-    };
-  }, []);
-
-  const login = (newToken) => {
-    localStorage.setItem('token', newToken);
-    setToken(newToken);
+  const fetchUserProfile = async () => {
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/auth/profile`);
+      setUser(res.data);
+    } catch (err) {
+      console.error('Не вдалося завантажити профіль:', err);
+      setUser(null);
+    }
   };
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    setToken(null);
-  };
+  const login = (jwtToken) => setToken(jwtToken);
+  const logout = () => setToken('');
 
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={{ token, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
-//
