@@ -2,6 +2,10 @@ import React, { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
+/**
+ * Компонент для захисту маршруту, доступного тільки авторизованим користувачам.
+ * @param {{ children: React.ReactNode }} props
+ */
 const ProtectedRoute = ({ children }) => {
   const { token } = useContext(AuthContext);
 
@@ -9,7 +13,7 @@ const ProtectedRoute = ({ children }) => {
     return <Navigate to="/login" />;
   }
 
-  return children;
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;

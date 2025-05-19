@@ -3,7 +3,12 @@ import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const AdminRoute = ({ children }) => {
-  const { token, user } = useContext(AuthContext);
+  const { token, user, loadingProfile } = useContext(AuthContext);
+
+  if (loadingProfile) {
+    // Поки профіль завантажується — можна показати індикатор або нічого
+    return <div>Завантаження...</div>;
+  }
 
   if (!token || !user || user.role !== 'admin') {
     return <Navigate to="/login" />;

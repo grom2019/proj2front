@@ -2,6 +2,10 @@ import React, { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
+/**
+ * Компонент для захисту маршруту, доступного тільки адміністраторам.
+ * @param {{ children: React.ReactNode }} props
+ */
 const AdminRoute = ({ children }) => {
   const { token, user } = useContext(AuthContext);
 
@@ -9,7 +13,7 @@ const AdminRoute = ({ children }) => {
     return <Navigate to="/login" />;
   }
 
-  return children;
+  return <>{children}</>;
 };
 
 export default AdminRoute;

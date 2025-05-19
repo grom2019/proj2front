@@ -30,21 +30,31 @@ function App() {
         </video>
 
         <Navbar />
+
         <main className="main-content">
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/verify-email" element={<VerifyEmail />} />
+
+            {/* Захищені маршрути для автентифікованих користувачів */}
             <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+
+            {/* Загальнодоступні сторінки */}
             <Route path="/brigades" element={<AllBrigadesPage />} />
             <Route path="/brigades/:commandId" element={<BrigadeCarouselPage />} />
             <Route path="/brigades/:commandId/:brigadeName" element={<BrigadeDetailPage />} />
             <Route path="/apply/:commandId/:brigadeName/:vacancyTitle" element={<ApplyPage />} />
+
+            {/* Адмінський маршрут */}
             <Route path="/admin" element={<AdminRoute><AdminPage /></AdminRoute>} />
+
+            {/* Домашня сторінка за замовчуванням */}
             <Route path="/" element={<Login />} />
           </Routes>
         </main>
+
         <Footer />
       </div>
     </Router>
