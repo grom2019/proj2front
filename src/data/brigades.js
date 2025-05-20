@@ -99,36 +99,29 @@ const brigadesByCommand = {
       ]
     },
     {
-      name: '81 ОАеМБр',
-      description: 'Аеромобільна бригада з високою мобільністю і швидким реагуванням.',
-      image: '/images/81.png',
+      name: '93 ОМБр',
+      description: 'Героїчна бригада "Холодний Яр".',
+      image: '/images/93.png',
       type: 'сухопутні',
-      category: 'аеромобільна',
+      category: 'механізована',
       vacancies: [
         {
-          title: 'Десантник',
-          image: '/images/vacancies/parashyutyst.jpg',
-          duties: [
-            'Виконання стрибків з парашутом в тилу ворога.',
-            'Швидке розгортання на заданій позиції.',
-            'Участь у рейдових операціях.'
-          ],
-          requirements: [
-            'Відмінна фізична форма.',
-            'Вміння працювати в екстремальних умовах.',
-            'Відсутність медичних протипоказань до стрибків.'
-          ],
-          qualifications: ['Курс парашутиста'],
-          knowledge: ['Парашутна техніка', 'Безпека польотів']
+          title: 'Кулеметник',
+          image: '/images/vacancies/kulemetnyk.jpg',
+          duties: ['Підтримка вогнем', 'Оборона позицій'],
+          requirements: ['Стійкість до навантаження'],
+          qualifications: ['Курс з кулемета ПКМ'],
+          knowledge: ['Обслуговування зброї', 'Тактика стрільби']
         }
       ]
     },
+    
     {
       name: '74 ОРБ',
       description: 'Окрема розвідувальна бригада, що забезпечує розвіддані для командування.',
       image: '/images/74.png',
       type: 'сухопутні',
-      category: 'розвідувальна',
+      category: 'механізована',
       vacancies: [
         {
           title: 'Розвідник',
@@ -149,26 +142,26 @@ const brigadesByCommand = {
 
   'ok-zakhid': [
     {
-      name: '93 ОМБр',
-      description: 'Героїчна бригада "Холодний Яр".',
-      image: '/images/93.png',
+      name: '128 ОГШБр',
+      description: 'Королі гір і бойових дій.',
+      image: '/images/128.png',
       type: 'сухопутні',
-      category: 'механізована',
+      category: 'гірська штурмова',
       vacancies: [
         {
-          title: 'Кулеметник',
-          image: '/images/vacancies/kulemetnyk.jpg',
-          duties: ['Підтримка вогнем', 'Оборона позицій'],
-          requirements: ['Стійкість до навантаження'],
-          qualifications: ['Курс з кулемета ПКМ'],
-          knowledge: ['Обслуговування зброї', 'Тактика стрільби']
+          title: 'Снайпер',
+          image: '/images/vacancies/sniper.jpg',
+          duties: ['Точкове знищення цілей', 'Спостереження'],
+          requirements: ['Влучність', 'Терпіння'],
+          qualifications: ['Снайперський курс'],
+          knowledge: ['Оптика', 'Маскування']
         }
       ]
     },
     {
       name: '24 ОМБр',
       description: 'Легендарна "Королева полігонів".',
-      image: '/images/brigade5.png',
+      image: '/images/24.png',
       type: 'сухопутні',
       category: 'механізована',
       vacancies: [
@@ -200,69 +193,11 @@ const brigadesByCommand = {
       ]
     },
     {
-      name: '80 ОДШБр',
-      description: 'Окрема десантно-штурмова бригада, спеціалісти з висадки парашутним способом.',
-      image: '/images/brigade80.png',
+      name: '44 ОАБр',
+      description: 'Окрема артилерійська бригада імені гетьмана Данила Апостола',
+      image: '/images/44.png',
       type: 'сухопутні',
-      category: 'десантна',
-      vacancies: [
-        {
-          title: 'Десантник',
-          image: '/images/vacancies/parashyutyst.jpg',
-          duties: ['Десантування в тил ворога', 'Ведення бою в складних умовах'],
-          requirements: ['Відмінна фізична підготовка', 'Вміння діяти в команді'],
-          qualifications: ['Курс десантника'],
-          knowledge: ['Парашутна техніка', 'Тактика десанту']
-        }
-      ]
-    }
-  ],
-
-  'ok-pivnich-pivden': [
-    {
-      name: '30 ОМБр',
-      description: 'Елітна механізована бригада з багаторічним бойовим досвідом.',
-      image: '/images/brigade10.png',
-      type: 'сухопутні',
-      category: 'механізована',
-      vacancies: [
-        {
-          title: 'Санінструктор',
-          image: '/images/vacancies/medic.jpg',
-          duties: [
-            'Надання першої медичної допомоги пораненим.',
-            'Евакуація з поля бою.',
-            'Підтримка бойової спроможності підрозділу.'
-          ],
-          requirements: ['Медична освіта', 'Стресостійкість'],
-          qualifications: ['Курс бойового медика'],
-          knowledge: ['Турнікети', 'Тактична медицина']
-        }
-      ]
-    },
-    {
-      name: '36 МПБр',
-      description: 'Морська піхота південного напряму, спеціалізується на амфібійних операціях.',
-      image: '/images/36.png',
-      type: 'морські',
-      category: 'механізована',
-      vacancies: [
-        {
-          title: 'Десантник',
-          image: '/images/vacancies/parashyutyst.jpg',
-          duties: ['Штурм об’єктів', 'Десантування'],
-          requirements: ['Фізична підготовка', 'Відвага'],
-          qualifications: ['Парашутна підготовка'],
-          knowledge: ['Тактика бою', 'Висадка з БТР']
-        }
-      ]
-    },
-    {
-      name: '56 ОМБр',
-      description: 'Механізована бригада з досвідом участі в багатьох операціях.',
-      image: '/images/56.png',
-      type: 'сухопутні',
-      category: 'механізована',
+      category: 'артилерія',
       vacancies: [
         {
           title: 'Стрілець',
@@ -277,25 +212,100 @@ const brigadesByCommand = {
           knowledge: ['Стрільба зі стрілецької зброї', 'Тактика']
         }
       ]
-    },
+    }
+    
+  ],
+
+  'ok-pivnich': [
     {
-      name: '108 ОГПБр',
-      description: 'Окрема гірсько-піхотна бригада, спеціалізується на бойових операціях у гірській місцевості.',
-      image: '/images/108.png',
+      name: '72 ОМБр',
+      description: 'Окрема механізована бригада імені Чорних Запорожців.',
+      image: '/images/72.png',
       type: 'сухопутні',
-      category: 'гірська піхота',
+      category: 'механізована',
       vacancies: [
         {
-          title: 'Гірський стрілець',
+          title: 'Стрілець',
           image: '/images/vacancies/strilets.jpg',
-          duties: ['Розвідка в гірській місцевості', 'Спостереження за противником'],
-          requirements: ['Відмінна фізична підготовка', 'Навички виживання'],
-          qualifications: ['Курс розвідника'],
-          knowledge: ['Тактика гірської піхоти', 'Маскування']
+          duties: ['Участь у бойових діях', 'Охорона позицій', 'Виконання наказів командирів'],
+          requirements: ['Фізична витривалість', 'Дисципліна'],
+          qualifications: ['Базова військова підготовка'],
+          knowledge: ['Стрілецька зброя', 'Основи тактики']
+        }
+      ]
+    },
+    {
+      name: '1 ОТБр',
+      description: 'Окрема танкова бригада — ударна бронетанкова сила ЗСУ.',
+      image: '/images/1otbr.png',
+      type: 'сухопутні',
+      category: 'танкова',
+      vacancies: [
+        {
+          title: 'Механік-водій танка',
+          image: '/images/vacancies/navidnyk.jpg',
+          duties: ['Управління танком у бою', 'Обслуговування техніки'],
+          requirements: ['Технічна підготовка', 'Стійкість до стресу'],
+          qualifications: ['Курс механіка-водія'],
+          knowledge: ['Будова танка', 'Тактика танкових підрозділів']
+        }
+      ]
+    },
+    {
+      name: '26 ОАБр',
+      description: 'Окрема артилерійська бригада, потужна вогнева підтримка.',
+      image: '/images/26abr.png',
+      type: 'сухопутні',
+      category: 'артилерія',
+      vacancies: [
+        {
+          title: 'Номер обслуги гармати',
+          image: '/images/vacancies/navidnyk.jpg',
+          duties: ['Підготовка до стрільби', 'Заряджання гармати', 'Підтримка боєприпасами'],
+          requirements: ['Фізична витривалість', 'Командна робота'],
+          qualifications: ['Артилерійська підготовка'],
+          knowledge: ['Типи боєприпасів', 'Тактика вогневої підтримки']
         }
       ]
     }
   ],
+  'ok-pivden': [
+    {
+      name: '28 ОМБр',
+      description: 'Окрема механізована бригада імені Лицарів Зимового Походу.',
+      image: '/images/28ombr.png',
+      type: 'сухопутні',
+      category: 'механізована',
+      vacancies: [
+        {
+          title: 'Гранатометник',
+          image: '/images/vacancies/granatometnyk.jpg',
+          duties: ['Знищення бронетехніки противника', 'Участь у штурмових діях'],
+          requirements: ['Влучність', 'Холоднокровність'],
+          qualifications: ['Підготовка з ПТРЗ'],
+          knowledge: ['Типи гранатометів', 'Техніка прицілювання']
+        }
+      ]
+    },
+    {
+      name: '40 ОАБр',
+      description: 'Окрема артилерійська бригада, озброєна сучасними системами залпового вогню.',
+      image: '/images/40abr.png',
+      type: 'сухопутні',
+      category: 'артилерія',
+      vacancies: [
+        {
+          title: 'Артилерист-навідник',
+          image: '/images/vacancies/navidnyk.jpg',
+          duties: ['Наведення гармати на ціль', 'Взаємодія з командиром батареї'],
+          requirements: ['Точність', 'Технічне мислення'],
+          qualifications: ['Артилерійський курс'],
+          knowledge: ['Оптика і прицілювання', 'Вогнева підтримка']
+        }
+      ]
+    }
+  ],  
+  
 
   'center': [
     {
@@ -343,6 +353,7 @@ const brigadesByCommand = {
         }
       ]
     }
+    
   ],
 
   'pivden': [
@@ -470,7 +481,7 @@ const brigadesByCommand = {
     {
       name: 'Берегова охорона Чорного моря',
       description: 'Підрозділ берегової охорони ВМС.',
-      image: '/images/bo_blacksea.png',
+      image: '/images/flot_1.png',
       type: 'морські',
       category: 'берегова охорона',
       vacancies: [
