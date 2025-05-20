@@ -12,11 +12,10 @@ const BrigadeDetailPage = () => {
   const [expandedSection, setExpandedSection] = useState(null);
 
   if (!brigade) {
-    return <div>Бригада не знайдена</div>;
+    return <div className="brigade-not-found">Бригада не знайдена</div>;
   }
 
   const toggleSection = (index, section) => {
-    // Якщо клікнули по тій же секції - закриваємо її
     if (expandedSection && expandedSection.index === index && expandedSection.section === section) {
       setExpandedSection(null);
     } else {
@@ -31,7 +30,13 @@ const BrigadeDetailPage = () => {
   return (
     <div className="brigade-detail-page">
       <h2>{brigade.name}</h2>
-      <img src={brigade.image} alt={brigade.name} className="brigade-detail-image" />
+      <img
+        src={brigade.image}
+        alt={brigade.name}
+        className="brigade-detail-image"
+        width={300}
+        height={300}
+      />
       <p>{brigade.description}</p>
       <p><strong>Тип:</strong> {brigade.type}</p>
       <p><strong>Категорія:</strong> {brigade.category}</p>
@@ -42,12 +47,18 @@ const BrigadeDetailPage = () => {
           {brigade.vacancies.map((vacancy, index) => (
             <div key={index} className="vacancy-card">
               <div className="vacancy-main-info">
-                <img src={vacancy.image} alt={vacancy.title} className="vacancy-image" />
+                <img
+                  src={vacancy.image}
+                  alt={vacancy.title}
+                  className="vacancy-image"
+                  width={180}
+                  height={180}
+                />
                 <div className="vacancy-summary">
                   <h4>{vacancy.title}</h4>
                   <p className="vacancy-short-description">{vacancy.description}</p>
                   <div className="vacancy-links">
-                    {['duties', 'requirements', 'qualifications', 'knowledge'].map((sectionKey) => {
+                    {['duties', 'requirements', 'qualifications', 'knowledge'].map(sectionKey => {
                       const sectionTitle = {
                         duties: "Обов’язки",
                         requirements: "Необхідні якості",

@@ -7,28 +7,6 @@
 }
 
 .brigade-detail-page {
-  font-family: Arial, sans-serif;
-  padding: 30px 25px;
-  background-color: #121212;
-  border-radius: 15px;
-  max-width: 1300px;
-  margin: 30px auto;
-  box-shadow: var(--shadow-yellow);
-  color: var(--text-color);
-}
-
-/* Заголовок */
-.brigade-detail-page h2 {
-  font-size: 3rem;
-  color: var(--text-color);
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: 700;
-  text-shadow: 0 0 6px var(--accent-yellow);
-}
-
-/* Зображення бригади */
-.brigade-detail-page {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 40px 30px;
   background-color: #1e1e1e; /* трохи світліший за #121212 для кращої читабельності */
@@ -38,8 +16,9 @@
   box-shadow:
     0 0 15px 2px rgba(250, 194, 21, 0.7),  /* жовте світіння */
     0 10px 20px rgba(0, 0, 0, 0.6);
-  color: #facc15; /* жовтий текст */
+  color: var(--text-color);
   transition: box-shadow 0.3s ease;
+  text-align: center;
 }
 
 .brigade-detail-page:hover {
@@ -48,21 +27,39 @@
     0 12px 25px rgba(0, 0, 0, 0.7);
 }
 
+/* Заголовок */
+.brigade-detail-page h2 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+  text-shadow: 0 0 6px var(--accent-yellow);
+  color: var(--text-color);
+}
 
-/* Текст */
+/* Фото бригади */
+.brigade-detail-image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+  display: block;
+  margin: 0 auto 30px;
+  box-shadow: var(--shadow-yellow);
+}
+
+/* Опис бригади */
 .brigade-detail-page p {
   font-size: 1.25rem;
   color: #e0e0e0;
   line-height: 1.8;
-  margin-top: 20px;
+  margin: 15px auto;
   max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-/* Вакансії */
+/* Секція вакансій */
 .vacancy-section {
   margin-top: 50px;
+  text-align: left;
 }
 
 .vacancy-section h3 {
@@ -75,6 +72,7 @@
   text-shadow: 0 0 5px var(--accent-yellow);
 }
 
+/* Карта вакансії */
 .vacancy-card {
   background-color: var(--dark-bg);
   border: 2px solid var(--accent-yellow);
@@ -95,8 +93,8 @@
 
 /* Фото вакансії */
 .vacancy-image {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   object-fit: cover;
   border-radius: 15px;
   flex-shrink: 0;
@@ -122,6 +120,7 @@
   line-height: 1.5;
 }
 
+/* Кнопки розділів вакансії */
 .vacancy-links {
   display: flex;
   gap: 15px;
@@ -139,6 +138,7 @@
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  user-select: none;
 }
 
 .vacancy-link:hover {
@@ -147,6 +147,7 @@
   box-shadow: 0 0 12px var(--accent-yellow);
 }
 
+/* Кнопка подачі заявки */
 .apply-button {
   padding: 14px 26px;
   background-color: transparent;
@@ -203,6 +204,7 @@
   line-height: 1.4;
 }
 
+/* Повідомлення про відсутність бригади */
 .brigade-not-found {
   font-size: 1.8rem;
   text-align: center;
