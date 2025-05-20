@@ -409,7 +409,7 @@ const brigadesByCommand = {
     {
       name: '15 окрема морська бригада',
       description: 'Ключова бригада Військово-морських сил України.',
-      image: '/images/vms_15.png',
+      image: '/images/15.png',
       type: 'морські',
       category: 'морська піхота',
       vacancies: [
@@ -433,7 +433,7 @@ const brigadesByCommand = {
     {
       name: '36 окрема морська піхотна бригада',
       description: 'Морська піхота ВМС України.',
-      image: '/images/mp_36.png',
+      image: '/images/36.png',
       type: 'морські',
       category: 'морська піхота',
       vacancies: [
