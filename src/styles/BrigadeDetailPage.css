@@ -28,15 +28,26 @@
 }
 
 /* Зображення бригади */
-.brigade-detail-image {
-  width: 100%;
-  height: 480px;
-  object-fit: cover;
+.brigade-detail-page {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 40px 30px;
+  background-color: #1e1e1e; /* трохи світліший за #121212 для кращої читабельності */
   border-radius: 20px;
-  box-shadow: 0 10px 28px rgba(250, 194, 21, 0.3);
-  margin-bottom: 40px;
-  position: relative;
+  max-width: 1200px;
+  margin: 40px auto;
+  box-shadow:
+    0 0 15px 2px rgba(250, 194, 21, 0.7),  /* жовте світіння */
+    0 10px 20px rgba(0, 0, 0, 0.6);
+  color: #facc15; /* жовтий текст */
+  transition: box-shadow 0.3s ease;
 }
+
+.brigade-detail-page:hover {
+  box-shadow:
+    0 0 25px 4px rgba(250, 194, 21, 1),
+    0 12px 25px rgba(0, 0, 0, 0.7);
+}
+
 
 /* Текст */
 .brigade-detail-page p {

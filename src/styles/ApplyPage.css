@@ -1,90 +1,127 @@
 .apply-page {
-    max-width: 500px;
-    margin: 40px auto;
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: rgba(26, 26, 26, 0.85); /* темний прозорий */
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(250, 194, 21, 0.6);
+  border: 2px solid rgba(250, 194, 21, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #facc15;
+  transition: box-shadow 0.3s ease;
+}
+
+.apply-page h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #facc15;
+  font-weight: 700;
+  text-shadow: 0 0 6px #facc15;
+}
+
+.apply-page p {
+  text-align: center;
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  color: #facc15cc;
+}
+
+.apply-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.apply-form label {
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #facc15;
+}
+
+.apply-form input[type="text"],
+.apply-form input[type="email"],
+.apply-form input[type="tel"],
+.apply-form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  margin-top: 5px;
+  border: 2px solid #facc15;
+  border-radius: 10px;
+  font-size: 1em;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #facc15;
+  box-shadow: inset 0 0 10px rgba(250, 194, 21, 0.4);
+  transition: all 0.3s ease;
+}
+
+.apply-form input::placeholder,
+.apply-form textarea::placeholder {
+  color: #facc15aa;
+}
+
+.apply-form input:focus,
+.apply-form textarea:focus {
+  border-color: #facc15;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 12px #facc15;
+  outline: none;
+}
+
+.apply-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.apply-form button {
+  padding: 12px 18px;
+  font-size: 1em;
+  font-weight: 700;
+  border: 2px solid #facc15;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.apply-form button[type="submit"] {
+  background-color: transparent;
+  color: #facc15;
+  box-shadow: 0 0 10px rgba(250, 194, 21, 0.6);
+}
+
+.apply-form button[type="submit"]:hover {
+  background-color: #facc15;
+  color: #000;
+  transform: scale(1.05);
+  box-shadow:
+    0 0 20px #facc15,
+    0 0 40px rgba(250, 194, 21, 0.5);
+}
+
+.cancel-button {
+  background-color: transparent;
+  color: #888;
+  border-color: #888;
+}
+
+.cancel-button:hover {
+  background-color: #333;
+  color: white;
+  border-color: #fff;
+}
+
+/* Адаптивність */
+@media (max-width: 600px) {
+  .apply-page {
     padding: 20px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 40px 20px;
   }
-  
-  .apply-page h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .apply-page p {
-    text-align: center;
-    font-size: 1.1em;
-    margin-bottom: 15px;
-    color: #555;
-  }
-  
-  .apply-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .apply-form label {
-    margin-bottom: 15px;
-    font-weight: 600;
-    color: #444;
-  }
-  
-  .apply-form input[type="text"],
-  .apply-form input[type="email"],
-  .apply-form input[type="tel"],
-  .apply-form textarea {
-    width: 100%;
-    padding: 8px 12px;
-    margin-top: 5px;
-    border: 1.5px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-    font-family: inherit;
-    resize: vertical;
-    transition: border-color 0.3s ease;
-  }
-  
-  .apply-form input[type="text"]:focus,
-  .apply-form input[type="email"]:focus,
-  .apply-form input[type="tel"]:focus,
-  .apply-form textarea:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  .apply-form textarea {
-    min-height: 80px;
-  }
-  
+
   .apply-form button {
-    padding: 10px 15px;
-    font-size: 1em;
-    font-weight: 600;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
+    padding: 14px;
+    font-size: 1.05rem;
   }
-  
-  .apply-form button[type="submit"] {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .apply-form button[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  
-  .cancel-button {
-    background-color: #6c757d;
-    color: white;
-  }
-  
-  .cancel-button:hover {
-    background-color: #5a6268;
-  }
-  
+}
