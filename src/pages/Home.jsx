@@ -21,20 +21,20 @@ const Home = () => {
       name: "Повітряні сили",
       image: "/images/povitryani.png",
       commands: [
-        { name: "Центр", id: "center", image: "/images/center.png" },
-        { name: "Захід", id: "zakhid", image: "/images/air-zakhid.png" },
-        { name: "Південь", id: "pivden", image: "/images/air-pivden.png" },
-        { name: "Схід", id: "skhid", image: "/images/air-skhid.png" },
+        { name: "Центр", id: "center", image: "/images/ok/center.png" },
+        { name: "Захід", id: "zakhid", image: "/images/ok/air-zakhid.png" },
+        { name: "Південь", id: "pivden", image: "/images/ok/air-pivden.png" },
+        { name: "Схід", id: "skhid", image: "/images/ok/air-skhid.png" },
       ],
     },
     {
       name: "Військово-морські сили",
       image: "/images/morsky.png",
       commands: [
-        { name: "Командування ВМС", id: "vms", image: "/images/vms.png" },
-        { name: "Морська піхота", id: "mp", image: "/images/mp.png" },
-        { name: "Флот", id: "flot", image: "/images/flot.png" },
-        { name: "Берегова охорона", id: "bo", image: "/images/bo.png" },
+        { name: "Командування ВМС", id: "vms", image: "/images/ok/vms.png" },
+        { name: "Морська піхота", id: "mp", image: "/images/ok/mp.png" },
+        { name: "Флот", id: "flot", image: "/images/ok/flot.png" },
+        { name: "Берегова охорона", id: "bo", image: "/images/ok/bo.png" },
       ],
     },
   ];
