@@ -106,7 +106,7 @@ const brigadesByCommand = {
       category: 'аеромобільна',
       vacancies: [
         {
-          title: 'Парашутист',
+          title: 'Десантник',
           image: '/images/vacancies/parashyutyst.jpg',
           duties: [
             'Виконання стрибків з парашутом в тилу ворога.',
@@ -208,7 +208,7 @@ const brigadesByCommand = {
       vacancies: [
         {
           title: 'Десантник',
-          image: '/images/vacancies/desantnyk.jpg',
+          image: '/images/vacancies/parashyutyst.jpg',
           duties: ['Десантування в тил ворога', 'Ведення бою в складних умовах'],
           requirements: ['Відмінна фізична підготовка', 'Вміння діяти в команді'],
           qualifications: ['Курс десантника'],
@@ -249,7 +249,7 @@ const brigadesByCommand = {
       vacancies: [
         {
           title: 'Десантник',
-          image: '/images/vacancies/desantnyk.jpg',
+          image: '/images/vacancies/parashyutyst.jpg',
           duties: ['Штурм об’єктів', 'Десантування'],
           requirements: ['Фізична підготовка', 'Відвага'],
           qualifications: ['Парашутна підготовка'],
@@ -286,8 +286,8 @@ const brigadesByCommand = {
       category: 'гірська піхота',
       vacancies: [
         {
-          title: 'Гірський розвідник',
-          image: '/images/vacancies/rozvidnyk.jpg',
+          title: 'Гірський стрілець',
+          image: '/images/vacancies/strilets.jpg',
           duties: ['Розвідка в гірській місцевості', 'Спостереження за противником'],
           requirements: ['Відмінна фізична підготовка', 'Навички виживання'],
           qualifications: ['Курс розвідника'],
@@ -296,7 +296,7 @@ const brigadesByCommand = {
       ]
     }
   ],
-   
+
   'center': [
     {
       name: 'Станція радіолокації "Центр"',
@@ -379,7 +379,7 @@ const brigadesByCommand = {
       vacancies: [
         {
           title: 'Інженер авіації',
-          image: '/images/vacancies/aviation_engineer.jpg',
+          image: '/images/vacancies/aviation_technician.jpg',
           duties: [
             'Технічне обслуговування авіатехніки',
             'Планування ремонтних робіт',
@@ -428,7 +428,7 @@ const brigadesByCommand = {
       vacancies: [
         {
           title: 'Снайпер морської піхоти',
-          image: '/images/vacancies/sniper.jpg',
+          image: '/images/vacancies/morsky_pihotynets.jpg',
           duties: [
             'Прицільне ураження цілей',
             'Розвідка',
