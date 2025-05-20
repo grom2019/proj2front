@@ -178,7 +178,7 @@ const brigadesByCommand = {
     {
       name: '10 ОГШБр',
       description: 'Окрема гірсько-штурмова бригада, спеціалізується на операціях у гірській місцевості.',
-      image: '/images/brigade13.png',
+      image: '/images/10.png',
       type: 'сухопутні',
       category: 'гірська штурмова',
       vacancies: [
