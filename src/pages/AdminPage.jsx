@@ -48,6 +48,8 @@ const AdminPage = () => {
   }, []);
 
   const handleDeleteUser = async (id) => {
+    if (!window.confirm('Ви впевнені, що хочете видалити цього користувача?')) return;
+
     try {
       const token = localStorage.getItem('token');
       await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/auth/users/${id}`, {
@@ -56,18 +58,23 @@ const AdminPage = () => {
       setUsers(users.filter(user => user.id !== id));
     } catch (err) {
       console.error('Помилка видалення користувача:', err);
+      alert('Не вдалося видалити користувача');
     }
   };
 
   const handleDeleteApplication = async (id) => {
+    if (!window.confirm('Ви впевнені, що хочете видалити цю заявку?')) return;
+
     try {
       const token = localStorage.getItem('token');
       await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/applications/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setApplications(applications.filter(app => app.id !== id));
+      if (selectedApplication?.id === id) setSelectedApplication(null);
     } catch (err) {
       console.error('Помилка видалення заявки:', err);
+      alert('Не вдалося видалити заявку');
     }
   };
 
@@ -84,24 +91,26 @@ const AdminPage = () => {
       setEditingUser(null);
     } catch (err) {
       console.error('Помилка оновлення користувача:', err);
+      alert('Не вдалося оновити користувача');
     }
   };
 
   const handleSaveApplication = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(
+      const { data } = await axios.put(
         `${process.env.REACT_APP_BASE_URL}/api/applications/${editingApplication.id}`,
         editingApplication,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const updatedApps = applications.map(a =>
-        a.id === editingApplication.id ? editingApplication : a
+        a.id === editingApplication.id ? data.application : a
       );
       setApplications(updatedApps);
       setEditingApplication(null);
     } catch (err) {
       console.error('Помилка оновлення заявки:', err);
+      alert('Не вдалося оновити заявку');
     }
   };
 
@@ -136,6 +145,7 @@ const AdminPage = () => {
                     <td>
                       {editingUser?.id === user.id ? (
                         <input
+                          type="text"
                           value={editingUser.username}
                           onChange={(e) =>
                             setEditingUser({ ...editingUser, username: e.target.value })
@@ -148,6 +158,7 @@ const AdminPage = () => {
                     <td>
                       {editingUser?.id === user.id ? (
                         <input
+                          type="email"
                           value={editingUser.email}
                           onChange={(e) =>
                             setEditingUser({ ...editingUser, email: e.target.value })
@@ -221,16 +232,20 @@ const AdminPage = () => {
                     <td>{app.last_name}</td>
                     <td>{app.vacancy_title || 'Вакансія'}</td>
                     <td>
-                      <button onClick={(e) => {
-                        e.stopPropagation();
-                        setEditingApplication(app);
-                      }}>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setEditingApplication(app);
+                        }}
+                      >
                         Редагувати
                       </button>
-                      <button onClick={(e) => {
-                        e.stopPropagation();
-                        handleDeleteApplication(app.id);
-                      }}>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteApplication(app.id);
+                        }}
+                      >
                         Видалити
                       </button>
                     </td>
@@ -249,7 +264,8 @@ const AdminPage = () => {
           <label>
             Ім'я:
             <input
-              value={editingApplication.first_name}
+              type="text"
+              value={editingApplication.first_name || ''}
               onChange={(e) =>
                 setEditingApplication({ ...editingApplication, first_name: e.target.value })
               }
@@ -258,56 +274,113 @@ const AdminPage = () => {
           <label>
             Прізвище:
             <input
-              value={editingApplication.last_name}
+              type="text"
+              value={editingApplication.last_name || ''}
               onChange={(e) =>
                 setEditingApplication({ ...editingApplication, last_name: e.target.value })
               }
             />
           </label>
-          {/* Додати більше полів за потреби */}
-          <button onClick={handleSaveApplication}>Зберегти</button>
-          <button onClick={() => setEditingApplication(null)}>Скасувати</button>
+          <label>
+            Вакансія:
+            <input
+              type="text"
+              value={editingApplication.vacancy_title || ''}
+              onChange={(e) =>
+                setEditingApplication({ ...editingApplication, vacancy_title: e.target.value })
+              }
+            />
+          </label>
+          <label>
+            Бригада:
+            <input
+              type="text"
+              value={editingApplication.brigade_name || ''}
+              onChange={(e) =>
+                setEditingApplication({ ...editingApplication, brigade_name: e.target.value })
+              }
+            />
+          </label>
+          <label>
+            Звання:
+            <input
+              type="text"
+              value={editingApplication.rank || ''}
+              onChange={(e) =>
+                setEditingApplication({ ...editingApplication, rank: e.target.value })
+              }
+            />
+          </label>
+          <label>
+            Посада:
+            <input
+              type="text"
+              value={editingApplication.position || ''}
+              onChange={(e) =>
+                setEditingApplication({ ...editingApplication, position: e.target.value })
+              }
+            />
+          </label>
+          <label>
+            Коментар:
+            <textarea
+              value={editingApplication.comment || ''}
+              onChange={(e) =>
+                setEditingApplication({ ...editingApplication, comment: e.target.value })
+              }
+            />
+          </label>
+          <div className="edit-form-buttons">
+            <button onClick={handleSaveApplication}>Зберегти</button>
+            <button onClick={() => setEditingApplication(null)}>Відмінити</button>
+          </div>
         </div>
       )}
 
-      {/* Деталі заявки */}
+      {/* Деталі вибраної заявки */}
       {selectedApplication && !editingApplication && (
-        <div className="admin-application-details">
+        <div className="application-details">
           <h2>Деталі заявки #{selectedApplication.id}</h2>
-          <p><strong>Ім'я:</strong> {selectedApplication.first_name} {selectedApplication.last_name} {selectedApplication.patronymic || ''}</p>
-          <p><strong>Дата народження:</strong> {selectedApplication.birth_date}</p>
-          <p><strong>Військова частина:</strong> {selectedApplication.military_unit}</p>
-          <p><strong>Звання:</strong> {selectedApplication.rank}</p>
-          <p><strong>Посада:</strong> {selectedApplication.position}</p>
-          <p><strong>MOS:</strong> {selectedApplication.mos}</p>
-          <p><strong>Email:</strong> {selectedApplication.email}</p>
-          <p><strong>Телефон:</strong> {selectedApplication.phone}</p>
-          <p><strong>Коментар:</strong> {selectedApplication.comment || '-'}</p>
-          <p><strong>Погодження:</strong> {selectedApplication.agreement ? 'Так' : 'Ні'}</p>
-          <p><strong>Командування:</strong> {selectedApplication.command_id}</p>
-          <p><strong>Бригада:</strong> {selectedApplication.brigade_name}</p>
-          <p><strong>Вакансія:</strong> {selectedApplication.vacancy_title}</p>
-          <p><strong>Документи:</strong></p>
-          {selectedApplication.documents && selectedApplication.documents.length > 0 ? (
-            <ul>
-              {selectedApplication.documents.map((doc, i) => (
-                <li key={i}>
-                  <a
-                    href={`${process.env.REACT_APP_BASE_URL}/uploads/${doc}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {doc}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>Документів немає.</p>
-          )}
-          <button className="admin-close-btn" onClick={() => setSelectedApplication(null)}>
-            Закрити
-          </button>
+          <p>
+            <strong>Ім'я:</strong> {selectedApplication.first_name}
+          </p>
+          <p>
+            <strong>Прізвище:</strong> {selectedApplication.last_name}
+          </p>
+          <p>
+            <strong>Вакансія:</strong> {selectedApplication.vacancy_title}
+          </p>
+          <p>
+            <strong>Бригада:</strong> {selectedApplication.brigade_name}
+          </p>
+          <p>
+            <strong>Звання:</strong> {selectedApplication.rank}
+          </p>
+          <p>
+            <strong>Посада:</strong> {selectedApplication.position}
+          </p>
+          <p>
+            <strong>Коментар:</strong> {selectedApplication.comment}
+          </p>
+          <p>
+            <strong>Документи:</strong>{' '}
+            {selectedApplication.documents && selectedApplication.documents.length > 0 ? (
+              selectedApplication.documents.map((doc, index) => (
+                <a
+                  key={index}
+                  href={`${process.env.REACT_APP_BASE_URL}/uploads/${doc}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ display: 'block', marginBottom: '5px' }}
+                >
+                  {doc}
+                </a>
+              ))
+            ) : (
+              <span>Документів немає</span>
+            )}
+          </p>
+          <button onClick={() => setSelectedApplication(null)}>Закрити</button>
         </div>
       )}
     </div>
