@@ -34,8 +34,9 @@ const AllBrigadesPage = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/applications/stats/brigades`, {
-          headers: { Authorization: `Bearer ${token}` }
+        const headers = token ? { Authorization: `Bearer ${token}` } : {};
+        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/applications/stats/brigades`, {
+          headers
         });
         setStats(res.data);
       } catch (err) {
@@ -43,9 +44,7 @@ const AllBrigadesPage = () => {
       }
     };
 
-    if (token) {
-      fetchStats();
-    }
+    fetchStats();
   }, [token]);
 
   return (
