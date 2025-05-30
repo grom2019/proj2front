@@ -17,11 +17,7 @@
   color: #facc15;
   margin-bottom: 2rem;
   text-transform: uppercase;
-  text-shadow:
-    0 0 3px #facc15,
-    0 0 7px #facc15,
-    0 0 11px #facc15,
-    0 0 15px #facc15;
+  text-shadow: 0 0 12px #facc15, 0 0 35px #facc15, 0 0 50px #facc15;
   letter-spacing: 2px;
 }
 
