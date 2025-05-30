@@ -1,16 +1,23 @@
 /* AdminPage.css */
 
+/* Контейнер сторінки */
 .admin-container {
   max-width: 900px;
   margin: 30px auto;
   padding: 20px 25px;
-  background: #1f2937; /* темний фон */
+  background: #111; /* як navbar фон */
   color: #facc15; /* жовтий акцент */
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
+  box-shadow: 0 8px 16px rgba(250, 194, 21, 0.4);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: box-shadow 0.5s ease-in-out;
 }
 
+.admin-container:hover {
+  box-shadow: 0 15px 30px rgba(250, 194, 21, 0.6);
+}
+
+/* Заголовок */
 .admin-container h1 {
   text-align: center;
   margin-bottom: 30px;
@@ -19,7 +26,7 @@
   letter-spacing: 1px;
 }
 
-/* Контейнер для двох таблиць */
+/* Контейнер таблиць */
 .admin-tables-container {
   display: flex;
   gap: 30px;
@@ -29,15 +36,20 @@
 
 /* Секції таблиць */
 .admin-table-section {
-  flex: 1 1 420px; /* гнучка ширина */
-  background: #111827;
+  flex: 1 1 420px;
+  background: #1a1a1a;
   border-radius: 10px;
   padding: 20px 15px;
-  box-shadow: 0 0 15px rgba(250, 204, 21, 0.1);
+  box-shadow: 0 0 15px rgba(250, 194, 21, 0.2);
   color: #facc15;
   min-width: 320px;
   max-height: 500px;
   overflow-y: auto;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.admin-table-section:hover {
+  box-shadow: 0 0 25px rgba(250, 194, 21, 0.5);
 }
 
 /* Заголовки секцій */
@@ -53,7 +65,7 @@
 .admin-table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 12px; /* вертикальний простір між рядками */
+  border-spacing: 0 12px;
   border-radius: 10px;
   overflow: hidden;
   font-size: 0.95rem;
@@ -62,13 +74,14 @@
 /* Заголовок таблиці */
 .admin-table thead th {
   background-color: #facc15;
-  color: #1f2937;
+  color: #111;
   font-weight: 700;
   text-transform: uppercase;
   padding: 12px 15px;
   letter-spacing: 0.05em;
   user-select: none;
   border-right: 1px solid #d4af37;
+  box-shadow: 0 0 6px rgba(250, 194, 21, 0.7);
 }
 
 .admin-table thead th:last-child {
@@ -77,27 +90,31 @@
 
 /* Тіло таблиці */
 .admin-table tbody tr {
-  background-color: #374151;
-  transition: background-color 0.3s ease;
+  background-color: #222;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.05);
+  box-shadow: inset 0 -1px 0 rgba(250, 194, 21, 0.2);
 }
 
 .admin-table tbody tr:hover {
-  background-color: #f59e0b;
-  color: #111827;
+  background-color: #facc15;
+  color: #111;
+  box-shadow: 0 0 15px 3px #facc15, 0 0 30px 5px rgba(250, 194, 21, 0.5);
+  transform: scale(1.03);
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .admin-table tbody tr.selected-row {
-  background-color: #d97706;
+  background-color: #e6b70a;
   font-weight: 700;
-  color: #111827;
+  color: #111;
+  box-shadow: 0 0 20px 6px #facc15;
 }
 
 .admin-table tbody td {
   padding: 12px 15px;
-  border-right: 1px solid rgba(250, 204, 21, 0.3);
+  border-right: 1px solid rgba(250, 194, 21, 0.3);
   vertical-align: middle;
 }
 
@@ -109,12 +126,17 @@
 .admin-application-details {
   margin-top: 30px;
   padding: 20px 25px;
-  background-color: #111827;
+  background-color: #1a1a1a;
   border-radius: 10px;
   color: #facc15;
-  box-shadow: 0 0 20px rgba(250, 204, 21, 0.15);
+  box-shadow: 0 0 20px rgba(250, 194, 21, 0.15);
   max-width: 900px;
   user-select: text;
+  transition: box-shadow 0.3s ease;
+}
+
+.admin-application-details:hover {
+  box-shadow: 0 0 30px rgba(250, 194, 21, 0.35);
 }
 
 .admin-application-details h2 {
@@ -148,7 +170,7 @@
 }
 
 .admin-application-details a:hover {
-  color: #f59e0b;
+  color: #e6b70a;
 }
 
 /* Кнопка закриття */
@@ -158,17 +180,19 @@
   cursor: pointer;
   border: none;
   background-color: #facc15;
-  color: #222;
+  color: #111;
   font-weight: 700;
   font-size: 1rem;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #facc15;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   display: inline-block;
   user-select: none;
 }
 
 .admin-close-btn:hover {
   background-color: #e6b70a;
+  transform: scale(1.05);
 }
 
 /* Повідомлення завантаження і помилки */
@@ -186,7 +210,7 @@
   color: #f87171;
 }
 
-/* Для повідомлення про відсутність даних */
+/* Повідомлення про відсутність даних */
 .admin-table-section p {
   font-style: italic;
   color: #d6a700;
@@ -206,7 +230,7 @@
 }
 
 .admin-table-section::-webkit-scrollbar-track {
-  background: #1f2937;
+  background: #111;
 }
 
 /* ----------- Адаптивність для мобільних ----------- */
@@ -217,7 +241,6 @@
     max-width: 100%;
   }
 
-  /* Відключаємо flex, щоб таблиці розміщувалися вертикально */
   .admin-tables-container {
     display: block;
     gap: 0;
@@ -226,12 +249,11 @@
   .admin-table-section {
     flex: none;
     width: 100%;
-    max-height: none; /* знімаємо обмеження по висоті */
+    max-height: none;
     padding: 15px 10px;
     margin-bottom: 25px;
   }
 
-  /* Робимо таблиці адаптивними */
   .admin-table {
     display: block;
     width: 100%;
@@ -248,7 +270,6 @@
   }
 
   .admin-table thead {
-    /* ховаємо заголовок таблиці */
     position: absolute;
     top: -9999px;
     left: -9999px;
@@ -256,18 +277,17 @@
 
   .admin-table tbody tr {
     margin-bottom: 15px;
-    background-color: #374151;
+    background-color: #222;
     border-radius: 8px;
     padding: 12px 15px;
-    box-shadow: inset 0 -1px 0 rgba(255,255,255,0.05);
+    box-shadow: inset 0 -1px 0 rgba(250, 194, 21, 0.2);
   }
 
   .admin-table tbody td {
     padding-left: 50%;
     position: relative;
     border: none;
-    border-right: none;
-    border-bottom: 1px solid rgba(250, 204, 21, 0.2);
+    border-bottom: 1px solid rgba(250, 194, 21, 0.3);
     text-align: left;
     font-size: 0.9rem;
   }
@@ -276,14 +296,12 @@
     border-bottom: none;
   }
 
-  /* Псевдоелементи для назв колонок (підкоригуй під свої колонки!) */
+  /* Псевдоелементи для назв колонок (підкоригуй відповідно до своїх даних) */
   .admin-table tbody td:nth-of-type(1)::before { content: "ID"; font-weight: 700; position: absolute; left: 15px; top: 12px; color: #facc15; }
   .admin-table tbody td:nth-of-type(2)::before { content: "Ім'я"; font-weight: 700; position: absolute; left: 15px; top: 12px; color: #facc15; }
   .admin-table tbody td:nth-of-type(3)::before { content: "Пошта"; font-weight: 700; position: absolute; left: 15px; top: 12px; color: #facc15; }
   .admin-table tbody td:nth-of-type(4)::before { content: "Роль"; font-weight: 700; position: absolute; left: 15px; top: 12px; color: #facc15; }
-  /* додай або змінюй під свої колонки */
 
-  /* Деталі заявки */
   .admin-application-details {
     padding: 15px 15px;
     max-width: 100%;
