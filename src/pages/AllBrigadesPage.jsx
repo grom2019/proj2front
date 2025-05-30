@@ -3,15 +3,11 @@ import brigadesByCommand from '../data/brigades';
 import '../styles/AllBrigadesPage.css';
 import { Link } from 'react-router-dom';
 import {
-  PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer,
+  BarChart, Bar, XAxis, YAxis, Tooltip,
+  ResponsiveContainer, CartesianGrid, LabelList
 } from 'recharts';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
-
-const COLORS = [
-  '#facc15', '#eab308', '#ca8a04', '#a16207',
-  '#854d0e', '#713f12', '#78350f', '#92400e',
-];
 
 const AllBrigadesPage = () => {
   const [filter, setFilter] = useState({ type: '', category: '' });
@@ -40,7 +36,7 @@ const AllBrigadesPage = () => {
       try {
         const headers = token ? { Authorization: `Bearer ${token}` } : {};
         const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/applications/stats/brigades`, {
-          headers,
+          headers
         });
         setStats(res.data);
       } catch (err) {
@@ -75,27 +71,25 @@ const AllBrigadesPage = () => {
         <div className="chart-container">
           <h3 className="chart-title">Найпопулярніші бригади</h3>
           <ResponsiveContainer width="100%" height={350}>
-            <PieChart>
-              <Pie
-                data={stats}
-                dataKey="application_count"
-                nameKey="brigade_name"
-                cx="50%"
-                cy="50%"
-                outerRadius={120}
-                label={({ name, value }) => `${name}: ${value}`}
-                labelLine={false}
-              >
-                {stats.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Tooltip
-                formatter={(value) => [`${value} заявок`, 'Кількість']}
-                separator=": "
+            <BarChart data={stats} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis
+                dataKey="brigade_name"
+                angle={-45}
+                textAnchor="end"
+                interval={0}
+                height={70}
+                tick={{ fill: '#facc15', fontWeight: '600' }}
               />
-              <Legend verticalAlign="bottom" height={36} />
-            </PieChart>
+              <YAxis tick={{ fill: '#facc15', fontWeight: '600' }} />
+              <Tooltip
+                contentStyle={{ backgroundColor: '#222', borderRadius: '8px', border: 'none' }}
+                itemStyle={{ color: '#facc15', fontWeight: '600' }}
+              />
+              <Bar dataKey="application_count" fill="#facc15" radius={[5, 5, 0, 0]}>
+                <LabelList dataKey="application_count" position="top" fill="#facc15" fontWeight="700" />
+              </Bar>
+            </BarChart>
           </ResponsiveContainer>
         </div>
       )}
