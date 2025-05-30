@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaInstagram, FaTelegramPlane, FaEnvelope } from 'react-icons/fa';
 import '../styles/Home.css';
 
 const Home = () => {
@@ -81,6 +82,19 @@ const Home = () => {
           </div>
         </div>
       )}
+
+      {/* Соціальні іконки збоку справа */}
+      <div className="social-icons">
+        <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <FaInstagram />
+        </a>
+        <a href="https://t.me/yourtelegram" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+          <FaTelegramPlane />
+        </a>
+        <a href="mailto:your.email@example.com" aria-label="Email">
+          <FaEnvelope />
+        </a>
+      </div>
     </div>
   );
 };
