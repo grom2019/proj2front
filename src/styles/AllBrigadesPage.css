@@ -56,4 +56,20 @@
     border-radius: 1rem;
     box-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
   }
+  .chart-container {
+    background: #1e1e1e;
+    padding: 1.5rem 1rem 2rem;
+    margin: 2rem 0;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(250, 204, 21, 0.4);
+    color: #facc15;
+    text-align: center;
+  }
+  
+  .chart-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 8px #facc15aa;
+  }
   

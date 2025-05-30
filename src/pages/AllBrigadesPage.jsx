@@ -3,11 +3,15 @@ import brigadesByCommand from '../data/brigades';
 import '../styles/AllBrigadesPage.css';
 import { Link } from 'react-router-dom';
 import {
-  BarChart, Bar, XAxis, YAxis, Tooltip,
-  ResponsiveContainer, CartesianGrid
+  PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer,
 } from 'recharts';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+
+const COLORS = [
+  '#facc15', '#eab308', '#ca8a04', '#a16207',
+  '#854d0e', '#713f12', '#78350f', '#92400e',
+];
 
 const AllBrigadesPage = () => {
   const [filter, setFilter] = useState({ type: '', category: '' });
@@ -36,7 +40,7 @@ const AllBrigadesPage = () => {
       try {
         const headers = token ? { Authorization: `Bearer ${token}` } : {};
         const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/applications/stats/brigades`, {
-          headers
+          headers,
         });
         setStats(res.data);
       } catch (err) {
@@ -69,15 +73,29 @@ const AllBrigadesPage = () => {
 
       {stats.length > 0 && (
         <div className="chart-container">
-          <h3>Статистика заявок по бригадах</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={stats}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="brigade_name" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="application_count" fill="#facc15" />
-            </BarChart>
+          <h3 className="chart-title">Найпопулярніші бригади</h3>
+          <ResponsiveContainer width="100%" height={350}>
+            <PieChart>
+              <Pie
+                data={stats}
+                dataKey="application_count"
+                nameKey="brigade_name"
+                cx="50%"
+                cy="50%"
+                outerRadius={120}
+                label={({ name, value }) => `${name}: ${value}`}
+                labelLine={false}
+              >
+                {stats.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip
+                formatter={(value) => [`${value} заявок`, 'Кількість']}
+                separator=": "
+              />
+              <Legend verticalAlign="bottom" height={36} />
+            </PieChart>
           </ResponsiveContainer>
         </div>
       )}
