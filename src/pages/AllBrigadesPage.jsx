@@ -34,15 +34,19 @@ const AllBrigadesPage = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/applications/stats/brigades`);
+        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/applications/stats/brigades`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
         setStats(res.data);
       } catch (err) {
         console.error('Помилка завантаження статистики:', err);
       }
     };
 
-    fetchStats();
-  }, []);
+    if (token) {
+      fetchStats();
+    }
+  }, [token]);
 
   return (
     <div className="all-brigades-page">
