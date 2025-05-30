@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 
 export const AuthContext = createContext();
@@ -27,12 +27,12 @@ export const AuthProvider = ({ children }) => {
   const fetchUserProfile = async () => {
     setLoadingProfile(true);
     try {
-      const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/auth/profile`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/auth/profile`);
       setUser(res.data);
     } catch (err) {
       console.error('Не вдалося завантажити профіль:', err);
       setUser(null);
-      setToken(''); // Якщо профіль не доступний, логаутим
+      setToken('');
     } finally {
       setLoadingProfile(false);
     }
@@ -47,3 +47,6 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+// ✅ ДОДАНО ХУК useAuth — необхідний для імпорту в компонентах
+export const useAuth = () => useContext(AuthContext);
